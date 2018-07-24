@@ -2,7 +2,6 @@
 [![](https://img.shields.io/badge/Author-guochao-ff69b4.svg)]()
 [![](https://img.shields.io/badge/version-1.0-brightgreen.svg)](https://github.com/guochaojava/springboot-demo)
 [![GitHub stars](https://img.shields.io/github/forks/guochaojava/springboot-demo.svg?style=social&label=Stars)](https://github.com/guochaojava/springboot-demo)
-[![GitHub forks](https://img.shields.io/github/forks/guochaojava/springboot-demo.svg?style=social&label=Fork)](https://github.com/guochaojava/springboot-demo)
 
 > 如果感觉对你有帮助欢迎点击Star支持一下
 
