@@ -1,7 +1,6 @@
 # springboot-demo
 [![](https://img.shields.io/badge/Author-guochao-ff69b4.svg)]()
 [![](https://img.shields.io/badge/version-1.0-brightgreen.svg)](https://github.com/guochaojava/springboot-demo)
-[![GitHub stars](https://img.shields.io/github/forks/guochaojava/springboot-demo.svg?style=social&label=Stars)](https://github.com/guochaojava/springboot-demo)
 
 > 如果感觉对你有帮助欢迎点击Star支持一下
 
@@ -11,6 +10,7 @@
 - [x] redis缓存
 - [x] 多环境配置文件
 - [x] mybatis
+- [x] 异常处理：全局异常、自定义异常
 - [x] lombok 简化代码
 - [x] spring security权限管理（包含freemarker tag使用示例）
 - [x] devtools热部署
