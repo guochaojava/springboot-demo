@@ -1,0 +1,90 @@
+spring:
+  ## Redis 配置
+  ## Redis数据库索引（默认为0）
+  redis:
+    database: 0
+    ## Redis服务器地址
+    host: 127.0.0.1
+    ## Redis服务器连接端口
+    port: 6379
+    ## Redis服务器连接密码（默认为空）
+    password:
+    ## 连接池最大连接数（使用负值表示没有限制）
+    jedis:
+      pool:
+        max-active: -1
+        ## 连接池最大阻塞等待时间（使用负值表示没有限制）
+        max-wait: -1
+        ## 连接池中的最大空闲连接
+        max-idle: 50
+        ## 连接池中的最小空闲连接
+        min-idle: 0
+        ## 连接超时时间（毫秒）
+    timeout: 0
+
+  ##mail配置
+  mail:
+    host: smtp.163.com
+    username: guochaojava@163.com
+    password: xxxxxxxxxxxxxxxxxxx
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
+
+## Mybatis 配置
+mybatis:
+  typeAliasesPackage: com.example.demo.model
+  mapperLocations: classpath:mapper/*.xml
+
+
+
+#自定义 配置
+example:
+  redis:
+    expire: 1800
+  cookie:
+    domain: localhost
+  jwt:
+    key: guochao@2018!
+    #jwt token 有效时长（毫秒）
+    exp: 1800000
+  wechat:
+    appId: appId
+    appSecret: appSecret
+  upload:
+      windows: E://upload
+      linux: /home/upload
+  druid:
+    username: root
+    password: alsm
+    url: jdbc:mysql://localhost:3306/example?useUnicode=true&characterEncoding=utf8
+    driverClassName: com.mysql.jdbc.Driver
+    filters: stat,wall
+    # 最大并发连接数
+    maxActive: 1000
+    # 初始化连接数量
+    initialSize: 10
+    # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+    timeBetweenEvictionRunsMillis: 60000
+    # 配置一个连接在池中最小生存的时间，单位是毫秒
+    minEvictableIdleTimeMillis: 180000
+    validationQuery: SELECT 'x'
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    maxOpenPreparedStatements: 20
+    # 打开removeAbandoned功能
+    removeAbandoned: true
+    # 1800秒，也就是30分钟
+    removeAbandonedTimeout: 1800
+    # 关闭abanded连接时输出错误日志
+    logAbandoned: true
+
+#日志
+logging:
+  config: classpath:log4j2-dev.xml
+

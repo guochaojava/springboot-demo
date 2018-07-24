@@ -1,0 +1,97 @@
+<#include "common/header.html" />
+
+<body>
+<div class="container-fluid larry-wrapper">
+    <div class="row">
+        <div class="col-xs-12 col-sm-8 col-md-4 col-md-offset-4 col-sm-offset-2 ">
+            <!--头部搜索-->
+            <section class="panel panel-padding login-pane">
+                <h1 class="head-title">后台模版【springboot】</h1>
+                <form class="layui-form layui-form-pane" action="/login" method="post">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label"><i class="iconfont">&#xe672;</i> 帐号</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="username" required jq-verify="required" placeholder="登录帐号"
+                                   autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label"><i class="iconfont">&#xe609;</i> 密码</label>
+                        <div class="layui-input-block">
+                            <input type="password" name="password" required jq-verify="required" placeholder="登录密码"
+                                   autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <!--<div class="layui-form-item">-->
+                        <!--<div class="layui-input-inline">-->
+                            <!--<input type="text" name="pwd" required jq-verify="required" placeholder="验证码"-->
+                                   <!--autocomplete="off" class="layui-input">-->
+
+                        <!--</div>-->
+                        <!--<div class="layui-input-inline"><img src="images/code.png" alt=""/></div>-->
+                    <!--</div>-->
+                    <!--<div class="layui-form-item">-->
+                        <!--<div class="layui-input-inline">-->
+                            <!--<input type="checkbox" name="open" lay-skin="switch" checked>-->
+                            <!--<span class="font-pt">记住我的登录</span>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <div class="layui-form-item">
+                        <div class="layui-input-block">
+                            <button class="layui-btn" jq-submit jq-filter="submit">立即提交</button>
+                        </div>
+                    </div>
+                </form>
+            </section>
+
+        </div>
+    </div>
+</div>
+</body>
+<script src="${base}/js/layui/layui.js"></script>
+
+<#include "common/version.html" />
+
+<script>
+    layui.use('simpleform');
+//    notifyMe();
+
+    function notifyMe() {
+        // 先检查浏览器是否支持
+        if (!("Notification" in window)) {
+            console.log("This browser does not support desktop notification");
+        }
+
+        // 检查用户是否同意接受通知
+        else if (Notification.permission === "granted") {
+            // If it's okay let's create a notification
+            var notification = new Notification('您有新的消息', {
+                body: '奥巴马：你说你咋这么帅呢',
+                icon: "images/labixiaoxintouxiangtupian.jpg"
+            });
+            notification.onclick = function (event) {
+                event.preventDefault(); // prevent the browser from focusing the Notification's tab
+                window.open('http://www.mozilla.org', '_blank');
+            }
+        }
+
+        // 否则我们需要向用户获取权限
+        else if (Notification.permission !== 'denied') {
+            Notification.requestPermission(function (permission) {
+                // 如果用户同意，就可以向他们发送通知
+                if (permission === "granted") {
+                    var notification = new Notification('新的消息', {
+                        body: '您有新的消息',
+                        icon: "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1531975092324&di=01b713fec7e2873f7394f1ebddd6fcf1&imgtype=0&src=http%3A%2F%2Fh.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2F342ac65c103853434cc02dda9f13b07eca80883a.jpg"
+                    });
+                    notification.onclick = function (event) {
+                        event.preventDefault(); // prevent the browser from focusing the Notification's tab
+                        window.open('http://www.mozilla.org', '_blank');
+                    }
+                }
+            });
+        }
+    }
+</script>
+
+</html>

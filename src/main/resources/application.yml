@@ -1,0 +1,11 @@
+#服务配置
+#选用配置文件类型
+spring:
+  profiles:
+    active: dev
+#
+#logging:
+#  level:
+#    org:
+#      springframework:
+#        web: debug

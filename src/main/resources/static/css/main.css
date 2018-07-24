@@ -1,0 +1,394 @@
+/*
+ * @Author: Paco
+ * @Date:   2017-02-7
+ * @lastmodify 2017-07-20
+ * +----------------------------------------------------------------------
+ * | jqadmin [ jq酷打造的一款懒人后台模板 ]
+ * | Copyright (c) 2017 http://jqadmin.jqcool.net All rights reserved.
+ * | Licensed ( http://jqadmin.jqcool.net/licenses/ )
+ * | Author: Paco <admin@jqcool.net>
+ * +----------------------------------------------------------------------
+ */
+
+html {
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+input,
+textarea {
+    color: #1E9FFF;
+}
+
+input::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder {
+    color: #DDD;
+}
+
+input:-moz-placeholder,
+textarea:-moz-placeholder {
+    color: #DDD;
+}
+
+input::-moz-placeholder,
+textarea::-moz-placeholder {
+    color: #DDD;
+}
+
+input:-ms-input-placeholder,
+textarea:-ms-input-placeholder {
+    color: #DDD;
+}
+
+.has-warning input::-webkit-input-placeholder,
+.has-warning textarea::-webkit-input-placeholder {
+    color: #FF5722;
+}
+
+.has-warning input:-moz-placeholder,
+.has-warning textarea:-moz-placeholder {
+    color: #FF5722;
+}
+
+.has-warning input::-moz-placeholder,
+textarea::-moz-placeholder {
+    color: #FF5722;
+}
+
+.has-warning input:-ms-input-placeholder,
+.has-warning textarea:-ms-input-placeholder {
+    color: #FF5722;
+}
+
+.head-title {
+    text-align: center;
+    font-size: 2em;
+    margin: 30px auto;
+    color: #333;
+}
+
+.bgcolor-blue {
+    background: #1E9FFF;
+}
+
+.color-blue {
+    color: #1E9FFF;
+}
+
+.bgcolor-commred {
+    background: #ff6c60;
+}
+
+.color-commred {
+    color: #ff6c60;
+}
+
+.bgcolor-dark-green {
+    background: #009688;
+}
+
+.color-dark-green {
+    color: #009688;
+}
+
+.bgcolor-yellow-green {
+    background: #5FB878;
+}
+
+.color-yellow-green {
+    color: #5FB878;
+}
+
+.bgcolor-orange {
+    background: #FF5722;
+}
+
+.color-orange {
+    color: #FF5722;
+}
+
+.bgcolor-yellow {
+    background: #F7B824;
+}
+
+.color-yellow {
+    color: #F7B824;
+}
+
+body {
+    background: #f2f2f2;
+    color: #999;
+}
+
+.layui-elem-quote {
+    background-color: #FFF;
+    font-size: 14px;
+    color: #ff6c60;
+}
+
+a,
+a:focus,
+a:hover {
+    text-decoration: none;
+}
+
+.larry-wrapper {
+    margin: 20px auto;
+}
+
+.symbol {
+    width: 40%;
+    padding: 1.4em 0;
+    border-radius: 4px 0px 0px 4px;
+    display: inline-block;
+    text-align: center;
+}
+
+.symbol i {
+    color: #fff;
+    font-size: 3em;
+}
+
+.value {
+    width: 58%;
+    text-align: center;
+    float: right;
+    margin-top: 1.4em;
+}
+
+.value h1 {
+    font-size: 1.8em;
+}
+
+.panel-heading {
+    border-bottom: 1px solid #EEE;
+    padding: 1.4em;
+}
+
+.panel-heading a {
+    color: #DDD;
+    font-weight: bold;
+}
+
+.panel-heading a:hover {
+    color: #999;
+}
+
+.log .panel-body h2 {
+    font-size: 1.4em;
+    color: #333;
+    line-height: 2.2em;
+}
+
+.log .panel-body ul li {
+    list-style: square inside;
+    line-height: 2em;
+}
+
+.echarts {
+    display: block;
+    padding: 15px;
+    height: 300px;
+}
+
+.panel-padding {
+    padding: 20px 10px;
+}
+
+.layui-form-label {
+    width: 150px;
+}
+
+.layui-input-block {
+    margin-left: 150px;
+}
+
+.tag,
+.tag-defined {
+    display: inline-block;
+    position: relative;
+    padding: 0 20px;
+    border: 1px solid #DDD;
+    border-radius: 2px;
+    cursor: pointer;
+    line-height: 36px;
+    margin: 0 10px 10px 0;
+}
+
+.tag-selected {
+    border: 1px solid #5FB878;
+    color: #5FB878;
+}
+
+.tick-box {
+    display: none;
+}
+
+.tag .tick-bg {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    border: 10px solid;
+    border-color: transparent #5FB878 #5FB878 transparent;
+}
+
+.tag .tick {
+    position: absolute;
+    right: 0;
+    bottom: -12px;
+    font-size: 8px;
+    color: #FFF;
+}
+
+.imgbox {
+    line-height: 120px;
+    height: 120px;
+    width: 120px;
+}
+
+.layui-form .has-warning {
+    position: relative;
+}
+
+.layui-form .has-warning .layui-input,
+.layui-form .has-warning .layui-form-select {
+    border: 1px solid #FF5722 !important;
+    color: #FF5722 !important;
+}
+
+.layui-form .has-success .layui-input,
+.layui-form .has-success .layui-form-select {
+    border: 1px solid #5FB878 !important;
+    color: #5FB878 !important;
+}
+
+.jq-error {
+    line-height: 36px;
+    color: #FF5722 !important;
+    position: absolute;
+    right: 5px;
+    top: 0;
+}
+
+.error {
+    line-height: 36px;
+    color: #FF5722 !important;
+    display: inline-block;
+    padding: 0 5px;
+}
+
+.add-subcat {
+    display: none;
+    padding: 20px;
+}
+
+.layui-form-item .left-icon {
+    float: left;
+    padding: 10px 15px;
+    background: #e6e6e6;
+    border: 1px solid #e6e6e6;
+    border-radius: 3px 0 0 3px;
+}
+
+.layui-form-item .left-icon i {
+    font-size: 12px;
+}
+
+.layui-form-item .role-box {
+    position: relative;
+    column-width: 180px;
+}
+
+.layui-form-item .role-box .jq-role-inline {
+    height: 100%;
+    overflow: auto;
+}
+
+.permission-list ul li dl,
+.permission-list ul li dl dd {
+    margin-left: 1.5em;
+}
+
+.layui-form-switch {
+    width: 50px;
+    margin-top: 0;
+}
+
+.layui-form .sort {
+    padding-left: 0;
+    line-height: 30px;
+    height: 30px;
+    text-align: center;
+    color: #999;
+}
+
+.jq-even tr:nth-child(even) {
+    background: #f4f4f5;
+}
+
+.jq-even tr:hover {
+    background: #999;
+    color: #FFF;
+}
+
+.layui-table th.txt-center,
+.layui-table td.txt-center {
+    text-align: center;
+}
+
+.font-pt {
+    padding-top: 6px;
+}
+
+.login-pane {
+    margin-top: 30%;
+}
+
+#list .img {
+    width: 80px;
+    max-width: 100px;
+    overflow: hidden;
+}
+
+.layui-table tr th {
+    position: relative;
+}
+
+.layui-table th i {
+    font-size: 10px;
+    font-weight: normal;
+    line-height: 24px;
+    transform-origin: center center;
+    padding-left: 3px;
+    position: absolute;
+}
+
+.layui-table th i.rotate {
+    transform: rotate(180deg);
+    line-height: 20px;
+}
+
+.layui-table th .order {
+    cursor: pointer;
+    position: relative;
+    display: inline-block;
+}
+
+.page-num {
+    margin: 0 10px;
+    display: inline-block;
+    width: 60px;
+    /* position: relative\0;
+    top: 10px\0; */
+}
+
+.page-num .layui-input,
+.page-num .layui-select {
+    height: 30px;
+    line-height: 30px;
+}
+
+.page-num .layui-form-select dl {
+    bottom: 32px;
+    top: -120px;
+}
