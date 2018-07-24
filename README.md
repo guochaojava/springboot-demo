@@ -17,7 +17,6 @@
 - [x] hutool工具集合
 - [ ] elasticsearch
 - [ ] 邮件
-- [ ] elasticsearch
 
 ### 页面采用[jqadmin后台模版](https://jqadmin.jqcool.net/)(简化页面开发)
 > *  修改index.js   菜单初始化方法
