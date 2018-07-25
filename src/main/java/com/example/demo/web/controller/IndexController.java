@@ -24,14 +24,14 @@ public class IndexController {
     @GetMapping("/index")
     public String index(Model model) {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        String username = "";
+        String userName = "";
         if (principal instanceof UserDetails) {
-            username = ((UserDetails) principal).getUsername();
+            userName = ((UserDetails) principal).getUsername();
         } else {
-            username = principal.toString();
+            userName = principal.toString();
         }
 
-        Admin admin = adminService.selectByLoginName(username);
+        Admin admin = adminService.selectByLoginName(userName);
 
         model.addAttribute("user", admin);
 

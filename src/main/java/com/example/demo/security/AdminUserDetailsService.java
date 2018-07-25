@@ -1,5 +1,6 @@
 package com.example.demo.security;
 
+import cn.hutool.crypto.SecureUtil;
 import com.example.demo.model.Admin;
 import com.example.demo.model.Role;
 import com.example.demo.service.AdminService;
@@ -35,8 +36,6 @@ public class AdminUserDetailsService implements UserDetailsService {
     @Autowired
     private AdminService adminService;
 
-    @Autowired
-    private PasswordEncoder passwordEncoder;
 
     @Autowired
     private RoleService roleService;
@@ -51,9 +50,6 @@ public class AdminUserDetailsService implements UserDetailsService {
             LOGGER.error("查无此用户: {}", loginName);
             throw new UsernameNotFoundException(loginName + " not found");
         }
-        //spring security 版本在5.0后就要加个PasswordEncoder了
-        String encodePassword = passwordEncoder.encode(adminUser.getPassword());
-        adminUser.setPassword(encodePassword);
 
         //查询用户角色信息
         List<Role> roleList = roleService.selectByAdminId(adminUser.getId());
@@ -61,7 +57,6 @@ public class AdminUserDetailsService implements UserDetailsService {
         for (Role role : roleList) {
             authorities.add(new SimpleGrantedAuthority(role.getCode()));
         }
-        authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
         return User.withUsername(loginName).password(adminUser.getPassword()).authorities(authorities).build();
     }
 }

@@ -98,4 +98,15 @@ public class Admin {
     public void setStatus(Boolean status) {
         this.status = status;
     }
+
+
+    private Integer roleId;
+
+    public Integer getRoleId() {
+        return roleId;
+    }
+
+    public void setRoleId(Integer roleId) {
+        this.roleId = roleId;
+    }
 }

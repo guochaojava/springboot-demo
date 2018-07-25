@@ -10,7 +10,7 @@
                     <div class="layui-form">
                         <div class="layui-inline">
                             <div class="layui-input-inline">
-                                <input class="layui-input" name="keyword" placeholder="关键字">
+                                <input class="layui-input" name="loginName" placeholder="关键字">
                             </div>
                         </div>
                         <div class="layui-inline">
@@ -24,16 +24,16 @@
             <section class="panel panel-padding">
                 <div class="group-button">
                     <button class="layui-btn layui-btn-small layui-btn-danger ajax-all"
-                            data-params='{"url": "./data/del.json","dataName":"admin","key":"id","action":"del"}'>
+                            data-params='{"url": "/admin/delete","dataName":"admin","key":"id","action":"del"}'>
                         <i class="iconfont">&#xe626;</i> 删除
                     </button>
 
                     <button class="layui-btn layui-btn-small layui-btn-normal ajax-all"
-                            data-params='{"url": "./data/success.json","data":"switch=1","dataName":"admin","key":"id"}'>
+                            data-params='{"url": "/admin/status","data":"switch=1","dataName":"admin","key":"id"}'>
                         <i class="layui-icon">&#x1005;</i> 启用
                     </button>
                     <button class="layui-btn layui-btn-small modal"
-                            data-params='{"content":".add-subcat","area":"500px,480px", "title":"添加顶级分类","type":"1","dataName":"admin","key":"id","action":"add"}'>
+                            data-params='{"content":".add-subcat","area":"500px,480px", "title":"添加管理员","type":"1","dataName":"admin","key":"id","action":"add"}'>
                         <i class="iconfont">&#xe649;</i> 添加
                     </button>
                 </div>
@@ -64,74 +64,49 @@
 
 <div class="add-subcat">
     <form id="form1" class="layui-form" data-params='{"dataName":"admin","key":"id","action":"add"}'
-          action="/admin/add" method="GET">
+          action="/admin/edit" method="POST">
         <div class="layui-form-item">
-            <label class="layui-form-label">帐号</label>
-            <div class="layui-input-block">
-                <input type="text" name="count" required jq-verify="required" jq-error="请输入帐号" placeholder="请输入帐号"
+            <label class="layui-form-label">登录账号</label>
+            <div class="layui-input-inline">
+                <input type="text" name="loginName" required jq-verify="required|loginName" jq-error="请输入帐号" placeholder="请输入帐号"
                        autocomplete="off" class="layui-input ">
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">密码</label>
             <div class="layui-input-inline">
-                <input type="password" name="pwd" placeholder="密码" autocomplete="off" class="layui-input ">
+                <input type="password" name="password" required jq-verify="required|pass" jq-error="请输入密码|请检查密码格式"
+                       placeholder="密码" autocomplete="off" class="layui-input ">
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">密码确认</label>
             <div class="layui-input-inline">
-                <input type="password" name="pwd2" placeholder="密码确认" autocomplete="off" class="layui-input ">
+                <input type="password" name="pwd2" required jq-verify="required|pass2" jq-error="请确认密码|两次密码不一致"
+                       placeholder="密码确认" autocomplete="off" class="layui-input ">
             </div>
         </div>
 
         <div class="layui-form-item">
             <label class="layui-form-label">所属角色</label>
             <div class="layui-input-inline">
-                <select name="role">
-                    <option value="1">管理员</option>
-                    <option value="2">客服</option>
-                    <option value="3">运营</option>
+                <select id="role" name="roleId" required hidden-required="true" jq-verify="required" jq-error="请选择角色">
+                    <option value="">请选择角色</option>
                 </select>
             </div>
         </div>
 
         <div class="layui-form-item">
-            <label class="layui-form-label">姓名</label>
+            <label class="layui-form-label">昵称</label>
             <div class="layui-input-inline">
-                <input type="text" name="title" placeholder="姓名" autocomplete="off" class="layui-input ">
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label">性别</label>
-            <div class="layui-input-inline">
-                <input type="radio" name="sex" title="男" value="1" checked/>
-                <input type="radio" name="sex" title="女" value="0"/>
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label">手机</label>
-            <div class="layui-input-inline">
-                <input type="text" name="tel" placeholder="手机号码" autocomplete="off" class="layui-input ">
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label">邮箱</label>
-            <div class="layui-input-inline">
-                <input type="text" name="email" placeholder="邮箱" autocomplete="off" class="layui-input ">
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label">部门</label>
-            <div class="layui-input-inline">
-                <input type="text" name="deparment" placeholder="部门" autocomplete="off" class="layui-input ">
+                <input type="text" name="nickName" placeholder="昵称" autocomplete="off" class="layui-input ">
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">状态</label>
             <div class="layui-input-inline">
-                <input type="radio" name="switch" title="启用" value="1" checked/>
-                <input type="radio" name="switch" title="禁用" value="0"/>
+                <input type="radio" name="status" title="启用" value="1" checked/>
+                <input type="radio" name="status" title="禁用" value="0"/>
             </div>
         </div>
         <div class="layui-form-item">
@@ -157,14 +132,14 @@
         <td>{{ formatDateTime(item.lastLoginTime)}}</td>
         <td><input type="checkbox" name="status" lay-skin="switch" lay-text="启用|禁用" value="true" {{#if (item.status){
                    }}checked="checked" {{# } }} lay-filter="ajax"
-                   data-params='{"url":"./data/success.json","data":"id={{ item.id}}"}'></td>
+                   data-params='{"url":"/admin/status","data":"id={{ item.id}}"}'></td>
         <td>
             <button class="layui-btn layui-btn-mini modal"
-                    data-params='{"content": ".add-subcat","area":"500px,480px","title":"编辑{{ item.title}}管理员","data":"id={{item.id}}","type":"1","action":"edit","bind":true}'>
+                    data-params='{"content": ".add-subcat","area":"500px,480px","title":"编辑{{ item.nickName}}管理员","data":"id={{item.id}}","type":"1","action":"edit","bind":true}'>
                 <i class="iconfont">&#xe653;</i>编辑
             </button>
             <button class="layui-btn layui-btn-mini layui-btn-danger ajax"
-                    data-params='{"url": "./data/del.json","data":"id={{item.id}}","action":"del"}'>
+                    data-params='{"url": "/admin/delete","data":"id={{item.id}}","action":"del"}'>
                 <i class="iconfont">&#xe626;</i>删除
             </button>
         </td>
@@ -179,7 +154,41 @@
 <#include "/common/version.html" />
 
 <script>
-    layui.use('list');
+    layui.use('list',function () {
+        var $ = layui.jquery,
+            form = layui.jqform;
+
+        form.verify({
+            loginName: function (value) {
+                if (!new RegExp("^[a-zA-Z0-9_\u4e00-\u9fa5\\s·]+$").test(value)) {
+                    return '不能有特殊字符';
+                }
+                if (/^\d+\d+\d$/.test(value)) {
+                    return '不能全为数字';
+                }
+            },
+            pass2: function (value) {
+                var pwd = $("input[name='password']").val();
+                if (value != pwd) {
+                    return '两次密码不一致';
+                }
+            },
+            pass: [
+                /^[\S]{6,12}$/, '密码必须6到12位，且不能出现空格'
+            ]
+        });
+
+        //获取角色
+        $.ajax({
+            url: "${base}/role/listNoPages",
+            dataType: "json",
+            success: function (data) {
+                $.each(data.data, function (i, item) {
+                    $("#role").append("<option value='" + item.id + "'>" + item.name + "</option>")
+                });
+            }
+        });
+    });
 </script>
 
 </html>

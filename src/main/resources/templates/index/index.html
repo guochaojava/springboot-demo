@@ -40,7 +40,7 @@
         <div class="jqadmin-main-menu">
             <ul class="layui-nav clearfix" id="menu" lay-filter="main-menu">
                 <!-- 自行根据系统添加主菜单以及角色控制 -->
-                <@security.authorize access="hasRole('ROLE_USER')">
+                <@security.authorize access="hasRole('ROLE_ADMIN')">
                 <li class="layui-nav-item layui-this">
                     <a href="javascript:;" data-title="系统设置">
                         <i class="iconfont hide-icon">&#xe689;</i>
@@ -67,7 +67,7 @@
                             </a>
                         </dd>
                         <dd>
-                            <a href=""><i class="iconfont ">&#xe64b; </i>退出</a>
+                            <a href="/logout"><i class="iconfont ">&#xe64b; </i>退出</a>
                         </dd>
                     </dl>
                 </li>
@@ -87,7 +87,7 @@
         <div class="layui-side-scroll">
             <div id="submenu">
                 <!-- 自行根据主菜单添加子菜单以及角色控制 -->
-                <@security.authorize access="hasRole('ROLE_USER')">
+                <@security.authorize access="hasRole('ROLE_ADMIN')">
                 <div class="sub-menu">
                     <ul class="layui-nav layui-nav-tree">
                         <li class="layui-nav-item">

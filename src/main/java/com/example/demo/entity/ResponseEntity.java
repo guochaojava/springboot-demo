@@ -54,6 +54,12 @@ public class ResponseEntity {
         return new ResponseEntity(CodeMessageEnum.OK.code(), map, CodeMessageEnum.OK.msg(), pages, total);
     }
 
+    public static ResponseEntity buildOk(Object data, String msg, Integer pages, Long total) {
+        Map<String, Object> map = new HashMap<>(1);
+        map.put("list", data);
+        return new ResponseEntity(CodeMessageEnum.OK.code(), map, msg, pages, total);
+    }
+
     public static ResponseEntity buildError() {
         return new ResponseEntity(CodeMessageEnum.ERROR.code(), CodeMessageEnum.ERROR.msg());
     }

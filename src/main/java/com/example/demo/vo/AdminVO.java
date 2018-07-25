@@ -12,6 +12,7 @@ public class AdminVO {
     private String loginName;
     private String nickName;
     private String roleName;
+    private Long roleId;
     private Long createTime;
     private Long lastLoginTime;
     private Boolean status;

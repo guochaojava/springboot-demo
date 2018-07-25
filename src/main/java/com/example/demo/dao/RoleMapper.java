@@ -20,4 +20,6 @@ public interface RoleMapper {
     int updateByPrimaryKey(Role record);
 
     List<Role> selectByAdminId(Long id);
+
+    List<Role> list();
 }

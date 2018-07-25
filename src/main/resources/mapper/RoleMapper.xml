@@ -76,4 +76,12 @@
             LEFT JOIN admin_role ar ON ar.role_id = r.id
         WHERE ar.admin_id = #{id,jdbcType=BIGINT}
     </select>
+
+    <select id="list" resultMap="BaseResultMap">
+        SELECT
+            id,
+            name,
+            code
+        FROM role
+    </select>
 </mapper>

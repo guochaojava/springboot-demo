@@ -17,4 +17,11 @@ public interface RoleService {
      * @return
      */
     List<Role> selectByAdminId(Long id);
+
+    /**
+     * 查询角色列表（不分页）
+     *
+     * @return
+     */
+    List<Role> listNoPages();
 }

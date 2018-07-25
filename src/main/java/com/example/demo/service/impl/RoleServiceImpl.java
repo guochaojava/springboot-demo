@@ -22,4 +22,9 @@ public class RoleServiceImpl implements RoleService {
     public List<Role> selectByAdminId(Long id) {
         return dao.selectByAdminId(id);
     }
+
+    @Override
+    public List<Role> listNoPages() {
+        return dao.list();
+    }
 }

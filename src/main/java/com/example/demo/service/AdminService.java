@@ -1,6 +1,6 @@
 package com.example.demo.service;
 
-import com.example.demo.dto.query.AdminQuery;
+import com.example.demo.dto.AdminQuery;
 import com.example.demo.model.Admin;
 import com.example.demo.vo.AdminVO;
 import com.github.pagehelper.PageInfo;
@@ -26,4 +26,36 @@ public interface AdminService {
      * @return
      */
     PageInfo<AdminVO> listByPage(AdminQuery query);
+
+    /**
+     * 根据id删除管理员
+     *
+     * @param id 管理员id
+     * @return 删除结果
+     */
+    int deleteById(Long[] id);
+
+    /**
+     * 根据id更新状态
+     *
+     * @param id 管理员id
+     * @return 更新结果
+     */
+    int updateStatusById(Long[] id);
+
+    /**
+     * 根据登录名更新最后一次登录时间
+     *
+     * @param userName  登录名
+     * @param timestamp 此刻的时间戳
+     */
+    void updateLastLoginTimeByLoginName(String userName, Long timestamp);
+
+    /**
+     * 编辑管理员
+     *
+     * @param admin 数据
+     * @return 编辑结果
+     */
+    boolean edit(Admin admin);
 }
