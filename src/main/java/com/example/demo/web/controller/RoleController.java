@@ -1,8 +1,11 @@
 package com.example.demo.web.controller;
 
+import com.example.demo.dto.RoleQuery;
 import com.example.demo.entity.ResponseEntity;
 import com.example.demo.model.Role;
 import com.example.demo.service.RoleService;
+import com.example.demo.vo.RoleVO;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,7 +24,7 @@ import java.util.List;
 @RequestMapping("/role")
 public class RoleController {
 
-    private static final String VIEW_PREFIX = "admin/";
+    private static final String VIEW_PREFIX = "role/";
 
     @Autowired
     private RoleService roleService;
@@ -29,8 +32,20 @@ public class RoleController {
 
     @GetMapping("/listNoPages")
     @ResponseBody
-    public Object listNoPages(){
+    public Object listNoPages() {
         List<Role> list = roleService.listNoPages();
         return ResponseEntity.buildOk(list);
+    }
+
+    @GetMapping
+    public String role() {
+        return VIEW_PREFIX + "role";
+    }
+
+    @GetMapping("/list")
+    @ResponseBody
+    public Object list(RoleQuery query) {
+        PageInfo<RoleVO> list = roleService.listByPage(query);
+        return ResponseEntity.buildOk(list.getList(), "查询成功", list.getPages(), list.getTotal());
     }
 }

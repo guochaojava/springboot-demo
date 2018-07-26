@@ -1,6 +1,8 @@
 package com.example.demo.dao;
 
+import com.example.demo.dto.RoleQuery;
 import com.example.demo.model.Role;
+import com.example.demo.vo.RoleVO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -22,4 +24,6 @@ public interface RoleMapper {
     List<Role> selectByAdminId(Long id);
 
     List<Role> list();
+
+    List<RoleVO> list(RoleQuery query);
 }
