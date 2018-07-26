@@ -48,4 +48,9 @@ public class RoleController {
         PageInfo<RoleVO> list = roleService.listByPage(query);
         return ResponseEntity.buildOk(list.getList(), "查询成功", list.getPages(), list.getTotal());
     }
+
+    @GetMapping("/add")
+    public String add(){
+        return VIEW_PREFIX + "add";
+    }
 }

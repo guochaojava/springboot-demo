@@ -45,7 +45,9 @@ public class ResponseEntity {
     }
 
     public static ResponseEntity buildOk(Object data) {
-        return new ResponseEntity(CodeMessageEnum.OK.code(), data, CodeMessageEnum.OK.msg());
+        Map<String, Object> map = new HashMap<>(1);
+        map.put("list", data);
+        return new ResponseEntity(CodeMessageEnum.OK.code(), map, CodeMessageEnum.OK.msg());
     }
 
     public static ResponseEntity buildOk(Object data, Integer pages, Long total) {

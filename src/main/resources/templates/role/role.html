@@ -45,10 +45,6 @@
                             data-params='{"url": "/role/delete","dataName":"role","key":"id","action":"del"}'>
                         <i class="iconfont">&#xe626;</i> 删除
                     </button>
-                    <button class="layui-btn layui-btn-small layui-btn-normal ajax-all" data-name="checkbox"
-                            data-params='{"url": "/role/update","data":"status=0","dataName":"role","key":"id"}'>
-                        <i class="layui-icon">&#x1005;</i> 禁用
-                    </button>
                     <button class="layui-btn layui-btn-small modal"
                             data-params='{"content": "/role/add", "title": "添加角色","full":"true","action":"add","dataName":"role","key":"id","type":2}'>
                         <i class="iconfont">&#xe649;</i> 添加角色
@@ -62,7 +58,6 @@
                                                   lay-skin="primary"></th>
                             <th>角色名称</th>
                             <th>描述</th>
-                            <th width="80">状态</th>
                             <th width="142">操作</th>
                         </tr>
                         </thead>
@@ -84,9 +79,6 @@
         <td><span class="edit" data-params='{"url":"/role/update","field":"name","data":"id={{ item.id}}"}'>{{item.name}}</span>
         </td>
         <td>{{ item.code}}</td>
-        <td><input type="checkbox" name="status" lay-skin="switch" lay-text="启用|禁用" value="!" {{#if (item.status){
-                   }}checked="checked" {{# } }} lay-filter="ajax"
-                   data-params='{"url":"./data/success.json","data":"id={{ item.id}}"}'></td>
         <td>
             <div class="layui-btn-group">
                 <button class="layui-btn layui-btn-mini modal"
