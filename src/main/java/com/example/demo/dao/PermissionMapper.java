@@ -1,6 +1,8 @@
 package com.example.demo.dao;
 
+import com.example.demo.dto.PermissionQuery;
 import com.example.demo.model.Permission;
+import com.example.demo.vo.PermissionVO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -9,15 +11,13 @@ import java.util.List;
 public interface PermissionMapper {
     int deleteByPrimaryKey(Integer id);
 
-    int insert(Permission record);
-
-    int insertSelective(Permission record);
-
     Permission selectByPrimaryKey(Integer id);
 
-    int updateByPrimaryKeySelective(Permission record);
+    List<Permission> listNoPages();
 
-    int updateByPrimaryKey(Permission record);
+    List<PermissionVO> list(PermissionQuery query);
 
-    List<Permission> list();
+    boolean add(Permission permission);
+
+    boolean update(Permission permission);
 }
