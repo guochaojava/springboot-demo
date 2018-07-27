@@ -18,7 +18,7 @@
                         <div class="layui-form-item">
                             <label class="layui-form-label">描述</label>
                             <div class="layui-input-block">
-                                <input type="text" name="desc" placeholder="对角的描述" autocomplete="off"
+                                <input type="text" name="code" placeholder="对角的描述" autocomplete="off"
                                        class="layui-input ">
                             </div>
                         </div>
@@ -52,13 +52,13 @@
                 {{# if(item.sub && item.sub.length>0){ }}
                 <ul>
                     {{# layui.each(item.sub, function(index2, item2){ }}
-                    <li><input type="checkbox" name="role[]" value="{{item2.id}}" title="{{item2.name}}"
+                    <li><input type="checkbox" name="roles[]" value="{{item2.id}}" title="{{item2.name}}"
                                lay-skin="primary" lay-filter="role"/> {{# if(item2.sub && item2.sub.length>0){ }} {{#
                         layui.each(item2.sub, function(index3, item3){ }}
-                        <dl><input type="checkbox" name="role[]" value="{{item3.id}}" title="{{item3.name}}"
+                        <dl><input type="checkbox" name="roles[]" value="{{item3.id}}" title="{{item3.name}}"
                                    lay-skin="primary" lay-filter="role"/> {{# if(item3.sub && item3.sub.length>0){ }}
                             {{# layui.each(item3.sub, function(index4, item4){ }}
-                            <dd><input type="checkbox" name="role[]" value="{{item4.id}}" title="{{item4.name}}"
+                            <dd><input type="checkbox" name="roles[]" value="{{item4.id}}" title="{{item4.name}}"
                                        lay-skin="primary" lay-filter="role"/></dd>
                             {{# }) }} {{# } }}
                         </dl>

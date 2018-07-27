@@ -1,6 +1,9 @@
 package com.example.demo.vo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
+
+import java.util.List;
 
 /**
  * @author guochao
@@ -11,4 +14,8 @@ public class RoleVO {
     private Long id;
     private String name;
     private String code;
+    private String role;
+
+    @JsonIgnore
+    private List<String> permissions;
 }

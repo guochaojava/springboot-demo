@@ -2,10 +2,8 @@ package com.example.demo.service;
 
 import com.example.demo.dto.RoleQuery;
 import com.example.demo.model.Role;
-import com.example.demo.vo.AdminVO;
 import com.example.demo.vo.RoleVO;
 import com.github.pagehelper.PageInfo;
-import org.springframework.security.access.vote.RoleVoter;
 
 import java.util.List;
 
@@ -37,4 +35,30 @@ public interface RoleService {
      * @return 查询结果
      */
     PageInfo<RoleVO> listByPage(RoleQuery query);
+
+    /**
+     * 添加角色
+     *
+     * @param role        角色信息
+     * @param permissions 权限列表
+     * @return 添加结果
+     */
+    boolean add(Role role, List<Integer> permissions);
+
+    /**
+     * 更新角色信息
+     *
+     * @param role 角色信息
+     * @return 更新结果
+     */
+    int update(Role role);
+
+    /**
+     * 更新
+     *
+     * @param id
+     * @param permissions
+     * @return
+     */
+    int updateRolePermission(Long id, List<Integer> permissions);
 }

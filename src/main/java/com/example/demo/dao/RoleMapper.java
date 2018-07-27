@@ -6,24 +6,27 @@ import com.example.demo.vo.RoleVO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
+import java.util.Map;
 
 @Mapper
 public interface RoleMapper {
     int deleteByPrimaryKey(Long id);
 
-    int insert(Role record);
-
-    int insertSelective(Role record);
-
     Role selectByPrimaryKey(Long id);
 
     int updateByPrimaryKeySelective(Role record);
 
-    int updateByPrimaryKey(Role record);
-
     List<Role> selectByAdminId(Long id);
 
-    List<Role> list();
+    List<Role> listNoPages();
 
     List<RoleVO> list(RoleQuery query);
+
+    boolean add(Role role);
+
+    void addPermissions(Map<String, Object> map);
+
+    int deletebyRoleId(Long id);
+
+    int updateRolePermission(Map<String, Object> map);
 }

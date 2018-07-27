@@ -6,6 +6,17 @@
         <result column="name" property="name" jdbcType="VARCHAR"/>
         <result column="code" property="code" jdbcType="VARCHAR"/>
     </resultMap>
+
+    <resultMap id="VoResultMap" type="com.example.demo.vo.RoleVO">
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="code" property="code" jdbcType="VARCHAR"/>
+
+        <collection property="permissions" javaType="java.util.List" ofType="java.lang.String">
+            <result column="permission_id" jdbcType="VARCHAR"/>
+        </collection>
+    </resultMap>
+
     <sql id="Base_Column_List">
         id, name, code
     </sql>
@@ -19,14 +30,7 @@
         DELETE FROM role
         WHERE id = #{id,jdbcType=BIGINT}
     </delete>
-    <insert id="insert" parameterType="com.example.demo.model.Role">
-        <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER">
-            SELECT LAST_INSERT_ID()
-        </selectKey>
-        insert into role (name, code)
-        values (#{name,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR})
-    </insert>
-    <insert id="insertSelective" parameterType="com.example.demo.model.Role">
+    <insert id="add" parameterType="com.example.demo.model.Role">
         <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER">
             SELECT LAST_INSERT_ID()
         </selectKey>
@@ -60,12 +64,6 @@
         </set>
         where id = #{id,jdbcType=BIGINT}
     </update>
-    <update id="updateByPrimaryKey" parameterType="com.example.demo.model.Role">
-        UPDATE role
-        SET name = #{name,jdbcType=VARCHAR},
-            code = #{code,jdbcType=VARCHAR}
-        WHERE id = #{id,jdbcType=BIGINT}
-    </update>
 
     <select id="selectByAdminId" resultMap="BaseResultMap" parameterType="java.lang.Long">
         SELECT
@@ -77,11 +75,41 @@
         WHERE ar.admin_id = #{id,jdbcType=BIGINT}
     </select>
 
-    <select id="list" resultMap="BaseResultMap">
+    <select id="listNoPages" resultMap="BaseResultMap">
         SELECT
             id,
             name,
             code
         FROM role
     </select>
+
+    <insert id="addPermissions">
+        insert into role_permission(role_id,permission_id)
+        values
+        <foreach item="ids" collection="permissions" separator=",">
+            (#{roleId},#{ids})
+        </foreach>
+    </insert>
+
+    <select id="list" resultMap="VoResultMap">
+        SELECT
+            r.id,
+            r.name,
+            r.code,
+            rp.permission_id
+        FROM role r LEFT JOIN role_permission rp ON r.id = rp.role_id
+    </select>
+
+    <delete id="deletebyRoleId">
+        DELETE FROM role_permission
+        WHERE role_id = #{roleId};
+    </delete>
+
+    <insert id="updateRolePermission">
+        insert into role_permission(role_id,permission_id)
+        values
+        <foreach item="ids" collection="permissions" separator=",">
+            (#{roleId},#{ids})
+        </foreach>
+    </insert>
 </mapper>

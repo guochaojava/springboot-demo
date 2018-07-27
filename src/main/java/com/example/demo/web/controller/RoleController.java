@@ -8,11 +8,9 @@ import com.example.demo.vo.RoleVO;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import java.util.*;
 
 /**
  * 角色控制器
@@ -50,7 +48,33 @@ public class RoleController {
     }
 
     @GetMapping("/add")
-    public String add(){
+    public String toAdd() {
         return VIEW_PREFIX + "add";
+    }
+
+    @PostMapping("/add")
+    @ResponseBody
+    public Object add(Role role, @RequestParam(value = "roles[]") List<Integer> roles) {
+        roleService.add(role, roles);
+        Map<String, Object> map = new HashMap<>(1);
+        map.put("id", role.getId().toString());
+        return ResponseEntity.buildOk(map).url("/role");
+    }
+
+    @GetMapping("/update")
+    public String toEdit() {
+        return VIEW_PREFIX + "edit";
+    }
+
+    @PostMapping(value = "/update")
+    @ResponseBody
+    public Object update(Role role, @RequestParam(value = "roles[]", required = false) List<Integer> permissions) {
+        roleService.update(role);
+        if (Objects.nonNull(permissions)) {
+            roleService.updateRolePermission(role.getId(), permissions);
+        }
+        Map<String, Object> map = new HashMap<>(1);
+        map.put("id", role.getId().toString());
+        return ResponseEntity.buildOk(map).url("/role");
     }
 }
