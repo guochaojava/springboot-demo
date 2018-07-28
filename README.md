@@ -14,6 +14,7 @@
 - [x] spring security权限管理（包含freemarker tag使用示例）
 - [x] devtools热部署
 - [x] hutool工具集合
+- [ ] 多数据源
 - [ ] elasticsearch
 - [ ] 邮件
 - [ ] 富文本编辑器
