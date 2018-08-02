@@ -14,10 +14,11 @@
 - [x] spring security权限管理（包含freemarker tag使用示例）
 - [x] devtools热部署
 - [x] hutool工具集合
+- [x] 富文本编辑器
 - [ ] 多数据源
 - [ ] elasticsearch
 - [ ] 邮件
-- [ ] 富文本编辑器
+
 
 ### 页面采用[jqadmin后台模版](https://jqadmin.jqcool.net/)(简化页面开发)
 > *  修改index.js   菜单初始化方法

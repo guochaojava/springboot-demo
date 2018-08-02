@@ -11,16 +11,6 @@
     <name>springboot-demo</name>
     <description>Demo project for Spring Boot</description>
 
-    <!-- 设定主仓库，按设定顺序进行查找 -->
-    <repositories>
-        <!-- 私有仓库 -->
-        <repository>
-            <id>public</id>  <!--这个ID需要与你的组group ID一致-->
-            <name>Public Repository</name>
-            <url>http://192.168.1.146:8081/nexus/content/groups/public</url>
-        </repository>
-    </repositories>
-
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
@@ -142,22 +132,6 @@
             <artifactId>hutool-all</artifactId>
             <version>4.0.12</version>
         </dependency>
-        <!--
-            ueditor 富文本编辑器需要的jar 这里是获取我本地的 jar在 /js/lib/jsp/lib
-            如果不需要富文本可以删除
-         -->
-        <dependency>
-            <groupId>com.baidu.ueditor</groupId>
-            <artifactId>ueditor</artifactId>
-            <version>1.1.2</version>
-        </dependency>
-        <dependency>
-            <groupId>com.djfy</groupId>
-            <artifactId>json</artifactId>
-            <version>1.0</version>
-        </dependency>
-
-
     </dependencies>
 
     <build>
