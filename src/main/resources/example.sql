@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50621
 File Encoding         : 65001
 
-Date: 2018-07-30 18:30:04
+Date: 2018-08-02 16:10:31
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -33,7 +33,7 @@ CREATE TABLE `admin` (
 -- ----------------------------
 -- Records of admin
 -- ----------------------------
-INSERT INTO `admin` VALUES ('1', 'admin', '$2a$10$7I4v4BZk9reFq69oQXm1yO1duTo7CAvw3J/4.resxfvTyohe6Ak7.', '违规昵称8A2CE223', '1532488149536', '1532945406375', '1');
+INSERT INTO `admin` VALUES ('1', 'admin', '$2a$10$7I4v4BZk9reFq69oQXm1yO1duTo7CAvw3J/4.resxfvTyohe6Ak7.', '违规昵称8A2CE223', '1532488149536', '1533197279862', '1');
 INSERT INTO `admin` VALUES ('2', 'test', '$2a$10$OfZWRIC5o6YOOndS/cRDXugxSMlsxNrhbUiOQMw09dwZ6xpvKkdEG', '游客', '1532488111898', '1532488136833', '1');
 INSERT INTO `admin` VALUES ('3', 'test2', '$2a$10$TRqVv1upps6caTgesdABHeoZIeyXI1w2UGPJVk1IT1dzJWYdyptha', '游客2', '1532489039650', '1532489039650', '1');
 INSERT INTO `admin` VALUES ('4', 'root', '$2a$10$ErgD0vb56ZavDwkJwRrWJu.vlSzQGO5U65Gnu7YLcCHuWqpHKaE6i', 'root', '1532499623716', '1532499623716', '1');
@@ -54,6 +54,29 @@ INSERT INTO `admin_role` VALUES ('1', '1');
 INSERT INTO `admin_role` VALUES ('2', '1');
 INSERT INTO `admin_role` VALUES ('3', '1');
 INSERT INTO `admin_role` VALUES ('4', '1');
+
+-- ----------------------------
+-- Table structure for article
+-- ----------------------------
+DROP TABLE IF EXISTS `article`;
+CREATE TABLE `article` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) NOT NULL COMMENT '标题',
+  `cover` varchar(255) DEFAULT NULL COMMENT '封面图片',
+  `intro` varchar(255) DEFAULT NULL COMMENT '简介',
+  `content` text COMMENT '内容',
+  `img` varchar(500) DEFAULT NULL COMMENT '内容图',
+  `source` varchar(255) DEFAULT NULL COMMENT '来源',
+  `sort` int(5) DEFAULT '0' COMMENT '排序',
+  `create_time` bigint(20) DEFAULT NULL COMMENT '创建日期',
+  `status` tinyint(1) unsigned zerofill NOT NULL DEFAULT '2' COMMENT '默认 2：待审核  1：正常  3：驳回',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COMMENT='文章表';
+
+-- ----------------------------
+-- Records of article
+-- ----------------------------
+INSERT INTO `article` VALUES ('1', '1', '1', '1', '1', '1', '1', '0', '1', '2');
 
 -- ----------------------------
 -- Table structure for permission
