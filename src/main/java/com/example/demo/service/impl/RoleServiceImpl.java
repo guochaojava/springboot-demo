@@ -15,8 +15,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
-import static com.sun.deploy.util.StringUtils.join;
-
 
 /**
  * @author guochao
@@ -46,13 +44,14 @@ public class RoleServiceImpl implements RoleService {
         for (int i = 0; i < length; i++) {
             RoleVO vo = list.get(i);
             if (Objects.nonNull(vo.getPermissions())) {
-                vo.setRole(join(vo.getPermissions(), ","));
+                vo.setRole(String.join(",", vo.getPermissions()));
             }
             list.set(i, vo);
         }
         PageInfo<RoleVO> pageInfo = new PageInfo<>(list);
         return pageInfo;
     }
+
 
     @Override
     public boolean add(Role role, List<Integer> permissions) {

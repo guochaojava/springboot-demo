@@ -56,8 +56,7 @@ example:
     appId: appId
     appSecret: appSecret
   upload:
-      windows: E://upload
-      linux: /home/upload
+      path: E://upload
   druid:
     username: root
     password: alsm

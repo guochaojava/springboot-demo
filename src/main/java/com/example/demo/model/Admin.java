@@ -1,5 +1,7 @@
 package com.example.demo.model;
 
+import lombok.Data;
+
 public class Admin {
     /**
      * 对应数据库 admin.id

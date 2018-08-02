@@ -1,4 +1,4 @@
-package com.example.demo.property;
+package com.example.demo.dto;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -6,9 +6,8 @@ import lombok.Setter;
 /**
  * @author guochao
  * @since 1.0.0
- **/
+ */
 @Setter
 @Getter
-public class UploadProperties {
-    private String path;
+public class ArticleQuery extends BaseQuery {
 }

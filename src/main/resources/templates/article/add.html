@@ -1,0 +1,117 @@
+<#include "/common/header.html" />
+
+<body>
+<div class="container-fluid larry-wrapper">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <section class="panel panel-padding">
+                <form id="form1" class="layui-form" data-params='{"dataName":"products","key":"id","action":"add"}'
+                      action="${base}/article/add" method="post">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">标题</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="title" required jq-verify="username" jq-error="请输入标题"
+                                   placeholder="请输入标题" autocomplete="off" class="layui-input ">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">简介</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="intro" required jq-verify="username" jq-error="请输入文章简介"
+                                   placeholder="请输入文章简介" autocomplete="off" class="layui-input ">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">封面图片</label>
+                        <div class="layui-input-block">
+                            <input type="file" id="tp" name="file" class="layui-upload-file">
+                            <input type="hidden" name="cover" class="img" required jq-verify="required"
+                                   jq-error="请上传图片" error-id="img-error">
+                            <p id="img-error" class="error"></p>
+                        </div>
+                    </div>
+                    <div class="layui-form-item ">
+                        <label class="layui-form-label">来源</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="source" required jq-verify="required|number" jq-error="必须填写|必须是数字"
+                                   placeholder="请输入文章来源" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+
+                    <div class="layui-form-item ">
+                        <label class="layui-form-label">排序</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="sort" value="0" required jq-verify="required|number"
+                                   jq-error="必须填写|必须是数字地"
+                                   autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+
+
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">状态</label>
+                        <div class="layui-input-inline">
+                            <input type="radio" name="status" title="是" value="1" checked/>
+                            <input type="radio" name="status" title="否" value="0"/>
+                        </div>
+                    </div>
+
+
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">内容</label>
+                        <div class="layui-input-block">
+                            <div id="content" name="content"></div>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <div class="layui-input-block">
+                            <button class="layui-btn" jq-submit data-ajax="true" lay-filter="submit">立即提交</button>
+                            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                        </div>
+                    </div>
+                </form>
+            </section>
+        </div>
+    </div>
+</div>
+</body>
+<script type="text/javascript" src="${base}/js/layui/layui.js"></script>
+<script type="text/javascript" src="${base}/js/wangEditor.min.js"></script>
+<script src="${base}/js/common.js"></script>
+
+<#include "/common/version.html" />
+<script>
+    layui.use('product', function () {
+        var $ = layui.jquery;
+
+        layui.upload({
+            url: '${base}/upload/img',
+            elem: '#tp',
+            before: function (input) {
+                box = $(input).parent('form').parent('div').parent('.layui-input-block');
+                if (box.next('div').length > 0) {
+                    box.next('div').html('<div class="imgbox"><p>上传中...</p></div>');
+                } else {
+                    box.after('<div class="layui-input-block"><div class="imgbox"><p>上传中...</p></div></div>');
+                }
+            },
+            success: function (res) {
+                console.log(res);
+                if (res.status == 200) {
+                    box.next('div').find('div.imgbox').html('<img src="' + res.data.list + '" alt="..." class="img-thumbnail">');
+                    box.find('input[type=hidden]').val(res.data.list);
+                    //form.check(box.find('input[type=hidden]'));
+                } else {
+                    box.next('div').find('p').html('上传失败...')
+                }
+            }
+        });
+    });
+
+    var E = window.wangEditor;
+    var editor = new E('#content');
+    editor.customConfig.uploadImgServer = '/upload/editor'
+    editor.create();
+</script>
+
+</html>
