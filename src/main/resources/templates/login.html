@@ -1,12 +1,12 @@
 <#include "common/header.html" />
 
-<body>
+<body style="background-image:url(/images/full-screen-image-1.jpg);background-repeat: no-repeat;background-size:100%;">
 <div class="container-fluid larry-wrapper">
     <div class="row">
-        <div class="col-xs-12 col-sm-8 col-md-4 col-md-offset-4 col-sm-offset-2 ">
+        <div class="col-xs-12 col-sm-8 col-md-4 col-md-offset-4 col-sm-offset-2">
             <!--头部搜索-->
             <section class="panel panel-padding login-pane">
-                <h1 class="head-title">后台模版【springboot】</h1>
+                <h1 class="head-title">登录</h1>
                 <form class="layui-form layui-form-pane" action="/login" method="post">
                     <div class="layui-form-item">
                         <label class="layui-form-label"><i class="iconfont">&#xe672;</i> 帐号</label>
@@ -22,20 +22,20 @@
                                    autocomplete="off" class="layui-input" value="admin">
                         </div>
                     </div>
-                  <!--  <div class="layui-form-item">
-                        <div class="layui-input-inline">
-                            <input type="text" name="pwd" required jq-verify="required" placeholder="验证码"
-                                   autocomplete="off" class="layui-input">
+                    <!--  <div class="layui-form-item">
+                          <div class="layui-input-inline">
+                              <input type="text" name="pwd" required jq-verify="required" placeholder="验证码"
+                                     autocomplete="off" class="layui-input">
 
-                        </div>
-                        <div class="layui-input-inline"><img src="images/code.png" alt=""/></div>
-                    </div>
-                    <div class="layui-form-item">
-                        <div class="layui-input-inline">
-                            <input type="checkbox" name="open" lay-skin="switch" checked>
-                            <span class="font-pt">记住我的登录</span>
-                        </div>
-                    </div>-->
+                          </div>
+                          <div class="layui-input-inline"><img src="images/code.png" alt=""/></div>
+                      </div>
+                      <div class="layui-form-item">
+                          <div class="layui-input-inline">
+                              <input type="checkbox" name="open" lay-skin="switch" checked>
+                              <span class="font-pt">记住我的登录</span>
+                          </div>
+                      </div>-->
                     <div class="layui-form-item">
                         <div class="layui-input-block">
                             <button class="layui-btn" jq-submit jq-filter="submit">立即提交</button>
@@ -54,7 +54,8 @@
 
 <script>
     layui.use('simpleform');
-//    notifyMe();
+
+    //    notifyMe();
 
     function notifyMe() {
         // 先检查浏览器是否支持
