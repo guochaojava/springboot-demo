@@ -2,6 +2,7 @@ package com.example.demo.service.impl;
 
 import com.example.demo.dao.ArticleMapper;
 import com.example.demo.dto.ArticleQuery;
+import com.example.demo.model.Article;
 import com.example.demo.service.ArticleService;
 import com.example.demo.vo.ArticleVO;
 import com.github.pagehelper.PageHelper;
@@ -27,5 +28,11 @@ public class ArticleServiceImpl implements ArticleService {
         List<ArticleVO> list = dao.list(query);
         PageInfo<ArticleVO> pageInfo = new PageInfo<>(list);
         return pageInfo;
+    }
+
+    @Override
+    public int add(Article article) {
+        article.setCreateTime(System.currentTimeMillis());
+        return dao.insertSelective(article);
     }
 }
