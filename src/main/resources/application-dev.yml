@@ -20,7 +20,12 @@ spring:
         ## 连接池中的最小空闲连接
         min-idle: 0
         ## 连接超时时间（毫秒）
-    timeout: 0
+    timeout: 5000
+
+  session:
+    store-type: redis
+    redis:
+      flush-mode: on_save
 
   ##mail配置
   mail:
@@ -59,7 +64,7 @@ example:
       path: E://upload
   druid:
     username: root
-    password: alsm
+    password: root
     url: jdbc:mysql://localhost:3306/example?useUnicode=true&characterEncoding=utf8
     driverClassName: com.mysql.jdbc.Driver
     filters: stat,wall
