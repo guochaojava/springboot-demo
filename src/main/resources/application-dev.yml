@@ -13,19 +13,18 @@ spring:
     jedis:
       pool:
         max-active: -1
-        ## 连接池最大阻塞等待时间（使用负值表示没有限制）
-        max-wait: -1
         ## 连接池中的最大空闲连接
         max-idle: 50
         ## 连接池中的最小空闲连接
         min-idle: 0
-        ## 连接超时时间（毫秒）
-    timeout: 5000
 
   session:
     store-type: redis
     redis:
       flush-mode: on_save
+  ## 缓存配置 开发阶段应该配置为false 因为经常会改
+  freemarker:
+    cache: false
 
   ##mail配置
   mail:
@@ -64,10 +63,10 @@ example:
       path: E://upload
   druid:
     username: root
-    password: root
+    password: alsm
     url: jdbc:mysql://localhost:3306/example?useUnicode=true&characterEncoding=utf8
     driverClassName: com.mysql.jdbc.Driver
-    filters: stat,wall
+    filters: stat,wall,log4j2
     # 最大并发连接数
     maxActive: 1000
     # 初始化连接数量
@@ -91,4 +90,3 @@ example:
 #日志
 logging:
   config: classpath:log4j2-dev.xml
-

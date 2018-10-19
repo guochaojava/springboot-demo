@@ -1,7 +1,9 @@
 package com.example.demo.web.controller;
 
+import cn.hutool.core.lang.Console;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+
 
 /**
  * 登录相关
@@ -11,7 +13,6 @@ import org.springframework.web.bind.annotation.GetMapping;
  */
 @Controller
 public class LoginController {
-
     @GetMapping("/login")
     public String login() {
         return "login";
