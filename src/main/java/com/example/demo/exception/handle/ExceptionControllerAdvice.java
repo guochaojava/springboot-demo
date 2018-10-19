@@ -1,9 +1,7 @@
 package com.example.demo.exception.handle;
 
 import com.example.demo.exception.TestException;
-import com.example.demo.web.controller.DemoController;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -19,9 +17,8 @@ import java.util.Map;
  * @since 1.0.0
  */
 @ControllerAdvice
+@Log4j2
 public class ExceptionControllerAdvice {
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(ExceptionControllerAdvice.class);
 
     /**
      * 全局异常捕捉处理(返回json)
@@ -33,8 +30,8 @@ public class ExceptionControllerAdvice {
     @ExceptionHandler(value = Exception.class)
     public Map<String, Object> errorHandler(Exception ex) {
         //记录日志
-        LOGGER.error("Exception location: {}", ex.getStackTrace());
-        LOGGER.error("Exception msg: {}", ex.getMessage());
+        log.error("Exception location: {}", ex.getStackTrace());
+        log.error("Exception msg: {}", ex.getMessage());
         Map<String, Object> map = new HashMap(2);
         map.put("code", 500);
         map.put("msg", ex.getMessage());
@@ -50,7 +47,7 @@ public class ExceptionControllerAdvice {
     @ExceptionHandler(value = TestException.class)
     public ModelAndView myErrorHandler(TestException ex) {
         //记录日志
-        LOGGER.error("TestException msg : {}", ex.getMsg());
+        log.error("TestException msg : {}", ex.getMsg());
         //页面跳转
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("/error");

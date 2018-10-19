@@ -1,12 +1,10 @@
 package com.example.demo.security;
 
-import cn.hutool.crypto.SecureUtil;
 import com.example.demo.model.Admin;
 import com.example.demo.model.Role;
 import com.example.demo.service.AdminService;
 import com.example.demo.service.RoleService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -14,8 +12,6 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -29,9 +25,8 @@ import java.util.Objects;
  * @since 1.0.0
  */
 @Component
+@Log4j2
 public class AdminUserDetailsService implements UserDetailsService {
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(AdminUserDetailsService.class);
 
     @Autowired
     private AdminService adminService;
@@ -42,12 +37,12 @@ public class AdminUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String loginName) throws UsernameNotFoundException {
-        LOGGER.info("管理员的用户名: {}", loginName);
+        log.info("管理员的用户名: {}", loginName);
         Admin adminUser = adminService.selectByLoginName(loginName);
 
         //查无此用户
         if (Objects.isNull(adminUser)) {
-            LOGGER.error("查无此用户: {}", loginName);
+            log.error("查无此用户: {}", loginName);
             throw new UsernameNotFoundException(loginName + " not found");
         }
 

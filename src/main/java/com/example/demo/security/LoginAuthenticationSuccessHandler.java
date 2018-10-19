@@ -5,6 +5,7 @@ import cn.hutool.json.JSONUtil;
 import com.example.demo.entity.ResponseEntity;
 import com.example.demo.model.Admin;
 import com.example.demo.service.AdminService;
+import lombok.extern.log4j.Log4j2;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,7 @@ import java.io.IOException;
  * @since 1.0.0
  */
 @Component
+@Log4j2
 public class LoginAuthenticationSuccessHandler extends SavedRequestAwareAuthenticationSuccessHandler {
     /**
      * 日志
