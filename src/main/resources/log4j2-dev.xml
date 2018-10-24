@@ -64,7 +64,7 @@
         -->
         <RollingRandomAccessFile name="INFO"
                                  fileName="${LOG_HOME}/log.log"
-                                 filePattern="${LOG_HOME}/${FILE_NAME}.log.%d{yyyy-MM-dd}_%i">
+                                 filePattern="${LOG_HOME}/info.log.%d{yyyy-MM-dd}_%i">
             <Filters>
                 <ThresholdFilter level="INFO" onMatch="ACCEPT" onMismatch="DENY"/>
             </Filters>
@@ -78,7 +78,7 @@
 
         <RollingRandomAccessFile name="ERROR"
                                  fileName="${LOG_HOME}/error.log"
-                                 filePattern="${LOG_HOME}/${FILE_NAME}.log.%d{yyyy-MM-dd}_%i">
+                                 filePattern="${LOG_HOME}/error.log.%d{yyyy-MM-dd}_%i">
             <Filters>
                 <ThresholdFilter level="ERROR" onMatch="ACCEPT" onMismatch="DENY"/>
             </Filters>
