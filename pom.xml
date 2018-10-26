@@ -130,13 +130,6 @@
             <version>1.1.10</version>
         </dependency>
 
-        <!-- 热部署 -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-devtools</artifactId>
-            <optional>true</optional>
-        </dependency>
-
         <!-- 工具类集合 -->
         <dependency>
             <groupId>cn.hutool</groupId>
@@ -156,11 +149,6 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <configuration>
-                    <fork>true</fork>
-                    <addResources>true</addResources>
-                    <jvmArguments>Dfile.encoding=UTF-8</jvmArguments>
-                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

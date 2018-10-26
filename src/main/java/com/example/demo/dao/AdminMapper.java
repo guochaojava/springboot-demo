@@ -29,4 +29,6 @@ public interface AdminMapper {
     void update(Admin admin);
 
     void updateRole(Admin admin);
+
+    int info(Admin admin);
 }

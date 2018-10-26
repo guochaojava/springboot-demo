@@ -38,6 +38,11 @@ spring:
           starttls:
             enable: true
             required: true
+  devtools:
+    livereload:
+      enabled: true
+    restart:
+      enabled: true
 #  data:
 #    elasticsearch:
 #      cluster-nodes: 127.0.0.1:9300
@@ -49,7 +54,6 @@ spring:
 mybatis:
   typeAliasesPackage: com.example.demo.model
   mapperLocations: classpath:mapper/*.xml
-
 
 
 #自定义 配置

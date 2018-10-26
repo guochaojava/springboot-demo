@@ -58,4 +58,12 @@ public interface AdminService {
      * @return 编辑结果
      */
     boolean edit(Admin admin);
+
+    /**
+     * 修改个人数据
+     *
+     * @param admin 数据
+     * @return 修改结果
+     */
+    int info(Admin admin);
 }

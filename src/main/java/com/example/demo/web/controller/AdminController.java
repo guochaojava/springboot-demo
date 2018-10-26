@@ -55,6 +55,13 @@ public class AdminController {
         }
     }
 
+    @PostMapping("/info")
+    @ResponseBody
+    public Object info(Admin admin) {
+        adminService.info(admin);
+        return ResponseEntity.buildOk("修改成功");
+    }
+
     @GetMapping("/delete")
     @ResponseBody
     public Object delete(Long[] id) {

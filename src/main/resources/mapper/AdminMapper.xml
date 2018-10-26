@@ -168,4 +168,17 @@
     <insert id="addRole" parameterType="com.example.demo.model.Admin">
         INSERT INTO admin_role (admin_id, role_id) VALUES (#{id}, #{roleId})
     </insert>
+
+    <update id="info" parameterType="com.example.demo.model.Admin">
+        update admin
+        <set>
+            <if test="password != null and password != ''">
+                password = #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="nickName != null">
+                nick_name = #{nickName,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
 </mapper>

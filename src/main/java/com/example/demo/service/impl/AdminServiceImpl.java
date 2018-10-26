@@ -80,4 +80,14 @@ public class AdminServiceImpl implements AdminService {
         }
         return true;
     }
+
+    @Override
+    public int info(Admin admin) {
+        if (admin.getPassword() != null || admin.getPassword() != "") {
+            //spring security 版本在5.0后就要加个PasswordEncoder了
+            String encodePassword = passwordEncoder.encode(admin.getPassword());
+            admin.setPassword(encodePassword);
+        }
+        return dao.info(admin);
+    }
 }

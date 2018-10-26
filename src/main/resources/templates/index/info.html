@@ -1,96 +1,135 @@
-<!--#include file="common/header.html"-->
-
+<#include "/common/header.html" />
+<link rel="stylesheet" type="text/css" href="${base}/css/user-info.css">
 <body>
-    <div class="container-fluid larry-wrapper">
-        <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <section class="panel panel-padding">
-                    <form id="form1" class="layui-form" data-params='{"dataName":"admin","action":"nodo"}' action="./data/success.json">
-                        <div class="layui-form-item">
-                            <label class="layui-form-label">帐号</label>
-                            <div class="layui-input-block">
-                                <input type="text" name="title" required jq-verify="required" jq-error="请输入帐号" placeholder="请输入帐号" autocomplete="off" class="layui-input ">
+<div class="container-fluid larry-wrapper">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <section class="panel panel-padding">
+                <form id="form1" class="layui-form layui-form-pane"
+                      data-params='{"dataName":"info","key":"id","action":"edit"}' action="${base}/admin/info"
+                      method="post">
+                    <input type="hidden" name="id" value="${user.id}"/>
+                    <div class="layui-tab layui-tab-brief">
+                        <ul class="layui-tab-title">
+                            <li class="layui-this">基本设置</li>
+                            <li>头像设置</li>
+                            <li>密码设置</li>
+                        </ul>
+                        <div class="layui-tab-content">
+                            <div class="layui-tab-item layui-show">
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label">登录账号</label>
+                                    <div class="layui-input-block">
+                                        <input type="text" value="${user.loginName}" disabled required
+                                               jq-verify="required"
+                                               jq-error="请输入昵称" placeholder="请输入昵称" autocomplete="off"
+                                               class="layui-input ">
+                                    </div>
+                                </div>
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label">昵称</label>
+                                    <div class="layui-input-block">
+                                        <input type="text" name="nickName" value="${user.nickName}" jq-verify="required"
+                                               jq-error="请输入昵称" placeholder="请输入昵称" autocomplete="off"
+                                               class="layui-input ">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="layui-tab-item">
+                                <div class="layui-form-item">
+                                    <div class="avatar-add">
+                                        <p>建议尺寸168*168，支持jpg、png、gif，最大不能超过30KB</p>
+                                        <div class="upload-img">
+                                            <div class="site-demo-upload">
+                                                <div class="site-demo-upbar">
+                                                    <input type="file" name="file" class="layui-upload-file" id="test">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <img id="LAY_demo_upload" src="${base}/images/upload.jpg">
+                                        <input type="hidden" id="img" name="img">
+                                        <span class="loading"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="layui-tab-item">
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label">新密码</label>
+                                    <div class="layui-input-block">
+                                        <input id="apwd" type="password" name="password" jq-verify="pass"
+                                               jq-error="请检查密码格式"
+                                               placeholder="请输入新密码" autocomplete="off" class="layui-input">
+                                    </div>
+                                </div>
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label">密码确认</label>
+                                    <div class="layui-input-block">
+                                        <input type="password" name="pwd2" jq-verify="password|pass2" jq-error="两次密码不一致"
+                                               placeholder="密码确认" autocomplete="off" class="layui-input ">
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div class="layui-form-item">
-                            <label class="layui-form-label">密码</label>
-                            <div class="layui-input-block">
-                                <input type="password" name="pwd" placeholder="密码" autocomplete="off" class="layui-input ">
-                            </div>
-                        </div>
-                        <div class="layui-form-item">
-                            <label class="layui-form-label">密码确认</label>
-                            <div class="layui-input-block">
-                                <input type="password" name="pwd2" placeholder="密码确认" autocomplete="off" class="layui-input ">
-                            </div>
-                        </div>
+                    </div>
 
-                        <div class="layui-form-item">
-                            <label class="layui-form-label">所属角色</label>
-                            <div class="layui-input-inline">
-                                <select name="role">
-                        <option value="1">管理员</option>
-                        <option value="2">客服</option>
-                        <option value="3">运营</option>
-                    </select>
-                            </div>
+                    <div class="layui-form-item">
+                        <div class="layui-input-block">
+                            <button class="layui-btn" jq-submit jq-filter="submit">立即提交</button>
+                            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
                         </div>
-
-                        <div class="layui-form-item">
-                            <label class="layui-form-label">姓名</label>
-                            <div class="layui-input-block">
-                                <input type="text" name="title" placeholder="姓名" autocomplete="off" class="layui-input ">
-                            </div>
-                        </div>
-                        <div class="layui-form-item" pane>
-                            <label class="layui-form-label">性别</label>
-                            <div class="layui-input-inline">
-                                <input type="radio" name="sex" title="男" value="1" checked />
-                                <input type="radio" name="sex" title="女" value="0" />
-                            </div>
-                        </div>
-                        <div class="layui-form-item">
-                            <label class="layui-form-label">手机</label>
-                            <div class="layui-input-block">
-                                <input type="text" name="title" placeholder="手机号码" autocomplete="off" class="layui-input ">
-                            </div>
-                        </div>
-                        <div class="layui-form-item">
-                            <label class="layui-form-label">邮箱</label>
-                            <div class="layui-input-block">
-                                <input type="text" name="title" placeholder="邮箱" autocomplete="off" class="layui-input ">
-                            </div>
-                        </div>
-                        <div class="layui-form-item">
-                            <label class="layui-form-label">部门</label>
-                            <div class="layui-input-block">
-                                <input type="text" name="title" placeholder="部门" autocomplete="off" class="layui-input ">
-                            </div>
-                        </div>
-                        <div class="layui-form-item" pane>
-                            <label class="layui-form-label">状态</label>
-                            <div class="layui-input-inline">
-                                <input type="radio" name="status" title="启用" value="1" checked />
-                                <input type="radio" name="status" title="禁用" value="0" />
-                            </div>
-                        </div>
-                        <div class="layui-form-item">
-                            <div class="layui-input-block">
-                                <button class="layui-btn" jq-submit jq-filter="submit">立即提交</button>
-                                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
-                            </div>
-                        </div>
-                    </form>
-                </section>
-            </div>
+                    </div>
+                </form>
+            </section>
         </div>
     </div>
+</div>
 </body>
-</script>
-<script src="js/layui/layui.js"></script>
-<!--#include file="common/version.html"-->
+
+<script src="${base}/js/layui/layui.js"></script>
+<script src="${base}/js/common.js"></script>
+
+<#include "/common/version.html" />
+
 <script>
-    layui.use('simpleform');
+    layui.use('myform', function () {
+        var $ = layui.jquery,
+            form = layui.jqform;
+        layui.upload({
+            url: '${base}/upload/img',
+            elem: '#test',
+            success: function (res) {
+                console.log(res);
+                if (res.status == 200) {
+                    $("#LAY_demo_upload").attr("src", res.data.list);
+                    $("#img").val(res.data.list);
+                    //form.check(box.find('input[type=hidden]'));
+                } else {
+
+                }
+            }
+        });
+
+        form.verify({
+            loginName: function (value) {
+                if (!new RegExp("^[a-zA-Z0-9_\u4e00-\u9fa5\\s·]+$").test(value)) {
+                    return '不能有特殊字符';
+                }
+                if (/^\d+\d+\d$/.test(value)) {
+                    return '不能全为数字';
+                }
+            },
+            pass2: function (value) {
+                var pwd = $("input[name='password']").val();
+                if (value != pwd) {
+                    return '两次密码不一致';
+                }
+            },
+            pass: [
+                /^[\S]{6,12}$/, '密码必须6到12位，且不能出现空格'
+            ]
+        });
+
+    });
 </script>
 
 </html>

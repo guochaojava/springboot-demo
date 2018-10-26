@@ -44,7 +44,18 @@ public class IndexController {
     }
 
     @GetMapping("/info")
-    public String info() {
+    public String info(Model model) {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String userName = "";
+        if (principal instanceof UserDetails) {
+            userName = ((UserDetails) principal).getUsername();
+        } else {
+            userName = principal.toString();
+        }
+
+        Admin admin = adminService.selectByLoginName(userName);
+
+        model.addAttribute("user", admin);
         return VIEW_PREFIX + "info";
     }
 }

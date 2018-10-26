@@ -8,7 +8,7 @@ package com.example.demo.enums;
  */
 public enum CodeMessageEnum {
 
-    OK(200, "OK"), ERROR(500, "ERROR"),;
+    OK(200, "操作成功"), ERROR(500, "操作失败"),;
 
     private Integer code;
     private String msg;
