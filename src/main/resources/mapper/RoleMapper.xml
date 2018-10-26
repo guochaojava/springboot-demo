@@ -93,11 +93,16 @@
 
     <select id="list" resultMap="VoResultMap">
         SELECT
-            r.id,
-            r.name,
-            r.code,
-            rp.permission_id
+        r.id,
+        r.name,
+        r.code,
+        rp.permission_id
         FROM role r LEFT JOIN role_permission rp ON r.id = rp.role_id
+        <where>
+            <if test="name != null">
+                and r.name like CONCAT('%',#{name},'%')
+            </if>
+        </where>
     </select>
 
     <delete id="deletebyRoleId">
@@ -112,4 +117,13 @@
             (#{roleId},#{ids})
         </foreach>
     </insert>
+
+    <delete id="delete">
+        delete from role
+        where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
 </mapper>

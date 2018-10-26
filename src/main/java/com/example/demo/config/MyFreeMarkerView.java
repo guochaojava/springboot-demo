@@ -2,6 +2,7 @@ package com.example.demo.config;
 
 import org.springframework.web.servlet.view.freemarker.FreeMarkerView;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 

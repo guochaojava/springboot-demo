@@ -29,4 +29,6 @@ public interface RoleMapper {
     int deletebyRoleId(Long id);
 
     int updateRolePermission(Map<String, Object> map);
+
+    int delete(Integer[] id);
 }

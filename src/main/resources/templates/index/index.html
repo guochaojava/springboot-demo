@@ -14,9 +14,9 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="format-detection" content="telephone=no">
     <!-- load css -->
-    <link rel="stylesheet" type="text/css" href="css/font/iconfont.css?v=1.0.0" media="all">
-    <link rel="stylesheet" type="text/css" href="css/layui.css?v=1.0.9" media="all">
-    <link rel="stylesheet" type="text/css" href="css/jqadmin.css?v=2.0.0" media="all">
+    <link rel="stylesheet" type="text/css" href="${base}/css/font/iconfont.css?v=1.0.0" media="all">
+    <link rel="stylesheet" type="text/css" href="${base}/css/layui.css?v=1.0.9" media="all">
+    <link rel="stylesheet" type="text/css" href="${base}/css/jqadmin.css?v=2.0.0" media="all">
 </head>
 
 <body>
@@ -73,7 +73,7 @@
                             </a>
                         </dd>
                         <dd>
-                            <a href="/logout"><i class="iconfont ">&#xe64b; </i>退出</a>
+                            <a href="${base}/logout"><i class="iconfont ">&#xe64b; </i>退出</a>
                         </dd>
                     </dl>
                 </li>
@@ -115,7 +115,7 @@
                                     </a>
                                 </dd>
                                 <dd>
-                                    <a href="javascript:;" data-url="/admin" data-title="管理人员">
+                                    <a href="javascript:;" data-url="${base}/admin" data-title="管理人员">
                                         <i class="iconfont" data-icon="&#xe672;">&#xe672;</i>
                                         <span>管理人员</span>
                                     </a>
@@ -162,7 +162,7 @@
         </div>
         <div class="layui-tab-content">
             <div class="layui-tab-item layui-show">
-                <iframe class="jqadmin-iframe" data-id='0' src="/welcome"></iframe>
+                <iframe class="jqadmin-iframe" data-id='0' src="${base}/welcome"></iframe>
             </div>
         </div>
     </div>
@@ -178,9 +178,10 @@
 </div>
 </body>
 
-<script type="text/javascript" src="js/layui/layui.js"></script>
 <#include "/common/version.html" />
+
 <script>
+    //不可删除
     var global = {};
     layui.use('index');
 </script>

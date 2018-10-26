@@ -78,12 +78,12 @@
     </div>
 </div>
 </body>
-<script type="text/javascript" src="${base}/js/layui/layui.js"></script>
 <script type="text/javascript" src="${base}/js/layui/lay/lib/jquery.js"></script>
 <script type="text/javascript" src="${base}/js/wangEditor.min.js"></script>
 <script src="${base}/js/common.js"></script>
 
 <#include "/common/version.html" />
+
 <script>
 
     layui.use('product', function () {
@@ -125,8 +125,6 @@
         // 初始化 textarea 的值
         $text1.val(editor.txt.html());
     });
-
-
 </script>
 
 </html>

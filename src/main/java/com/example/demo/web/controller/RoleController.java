@@ -1,5 +1,6 @@
 package com.example.demo.web.controller;
 
+import cn.hutool.core.lang.Console;
 import com.example.demo.dto.RoleQuery;
 import com.example.demo.entity.ResponseEntity;
 import com.example.demo.model.Role;
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.*;
 
 /**
@@ -54,11 +56,14 @@ public class RoleController {
 
     @PostMapping("/add")
     @ResponseBody
-    public Object add(Role role, @RequestParam(value = "roles[]") List<Integer> roles) {
+    public Object add(Role role, @RequestParam(value = "roles[]", required = false) List<Integer> roles, HttpServletRequest request) {
+        if (Objects.isNull(roles)) {
+            return ResponseEntity.buildError("请选择所属权限");
+        }
         roleService.add(role, roles);
         Map<String, Object> map = new HashMap<>(1);
         map.put("id", role.getId().toString());
-        return ResponseEntity.buildOk(map).url("/role");
+        return ResponseEntity.buildOk(map).url(request.getContextPath() + "/role");
     }
 
     @GetMapping("/update")
@@ -68,13 +73,20 @@ public class RoleController {
 
     @PostMapping(value = "/update")
     @ResponseBody
-    public Object update(Role role, @RequestParam(value = "roles[]", required = false) List<Integer> permissions) {
+    public Object update(Role role, @RequestParam(value = "roles[]", required = false) List<Integer> permissions,HttpServletRequest request) {
         roleService.update(role);
         if (Objects.nonNull(permissions)) {
             roleService.updateRolePermission(role.getId(), permissions);
         }
         Map<String, Object> map = new HashMap<>(1);
         map.put("id", role.getId().toString());
-        return ResponseEntity.buildOk(map).url("/role");
+        return ResponseEntity.buildOk(map).url(request.getContextPath() +"/role");
+    }
+
+    @GetMapping(value = "/delete")
+    @ResponseBody
+    public Object delete(Integer[] id) {
+        roleService.delete(id);
+        return ResponseEntity.buildOk();
     }
 }

@@ -6,7 +6,7 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <section class="panel panel-padding">
                 <form id="form1" class="layui-form" data-params='{"dataName":"role","key":"id","action":"add"}'
-                      action="/role/add" method="post">
+                      action="${base}/role/add" method="post">
                     <div class="layui-form-item ">
                         <div class="layui-form-item">
                             <label class="layui-form-label">角色名称</label>
@@ -43,7 +43,7 @@
 </body>
 
 <script id="list-tpl" type="text/html"
-        data-params='{"url":"/permission/listNoPages","dataName":"permission","callBack":"bindRole"}'>
+        data-params='{"url":"${base}/permission/listNoPages","dataName":"permission","callBack":"bindRole"}'>
     {{# layui.each(d.list, function(index, item){ }}
     <div class="jq-role-inline">
         <fieldset class="layui-elem-field">
@@ -73,8 +73,6 @@
     </div>
     {{# }) }}
 </script>
-
-<script type="text/javascript" src="${base}/js/layui/layui.js"></script>
 
 <#include "/common/version.html" />
 

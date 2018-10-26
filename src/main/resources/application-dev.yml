@@ -22,9 +22,6 @@ spring:
     store-type: redis
     redis:
       flush-mode: on_save
-  ## 缓存配置 开发阶段应该配置为false 因为经常会改
-  freemarker:
-    cache: false
 
   ##mail配置
   mail:
@@ -38,11 +35,6 @@ spring:
           starttls:
             enable: true
             required: true
-  devtools:
-    livereload:
-      enabled: true
-    restart:
-      enabled: true
 #  data:
 #    elasticsearch:
 #      cluster-nodes: 127.0.0.1:9300
@@ -100,3 +92,7 @@ example:
 #日志
 logging:
   config: classpath:log4j2-dev.xml
+
+server:
+  servlet:
+    context-path: /example

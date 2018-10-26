@@ -6,7 +6,7 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <!--头部搜索-->
             <section class="panel panel-padding">
-                <form class="layui-form" data-params='{"dataName":"admin","action":"list"}' action="/admin/list" method="post">
+                <form class="layui-form" data-params='{"dataName":"admin","action":"list"}' action="${base}/admin/list" method="post">
                     <div class="layui-form">
                         <div class="layui-inline">
                             <div class="layui-input-inline">
@@ -24,12 +24,12 @@
             <section class="panel panel-padding">
                 <div class="group-button">
                     <button class="layui-btn layui-btn-small layui-btn-danger ajax-all"
-                            data-params='{"url": "/admin/delete","dataName":"admin","key":"id","action":"del"}'>
+                            data-params='{"url": "${base}/admin/delete","dataName":"admin","key":"id","action":"del"}'>
                         <i class="iconfont">&#xe626;</i> 删除
                     </button>
 
                     <button class="layui-btn layui-btn-small layui-btn-normal ajax-all"
-                            data-params='{"url": "/admin/status","data":"switch=1","dataName":"admin","key":"id"}'>
+                            data-params='{"url": "${base}/admin/status","data":"switch=1","dataName":"admin","key":"id"}'>
                         <i class="layui-icon">&#x1005;</i> 启用
                     </button>
                     <button class="layui-btn layui-btn-small modal"
@@ -64,7 +64,7 @@
 
 <div class="add-subcat">
     <form id="form1" class="layui-form" data-params='{"dataName":"admin","key":"id","action":"add"}'
-          action="/admin/edit" method="POST">
+          action="${base}/admin/edit" method="POST">
         <div class="layui-form-item">
             <label class="layui-form-label">登录账号</label>
             <div class="layui-input-inline">
@@ -120,7 +120,7 @@
 </body>
 
 <script id="list-tpl" type="text/html"
-        data-params='{"url":"/admin/list","dataName":"admin","key":"id","pageid":"#page"}'>
+        data-params='{"url":"${base}/admin/list","dataName":"admin","key":"id","pageid":"#page"}'>
 
     {{# layui.each(d.list, function(index, item){ }}
     <tr>
@@ -132,14 +132,14 @@
         <td>{{ formatDateTime(item.lastLoginTime)}}</td>
         <td><input type="checkbox" name="status" lay-skin="switch" lay-text="启用|禁用" value="true" {{#if (item.status){
                    }}checked="checked" {{# } }} lay-filter="ajax"
-                   data-params='{"url":"/admin/status","data":"id={{ item.id}}"}'></td>
+                   data-params='{"url":"${base}/admin/status","data":"id={{ item.id}}"}'></td>
         <td>
             <button class="layui-btn layui-btn-mini modal"
                     data-params='{"content": ".add-subcat","area":"500px,480px","title":"编辑{{ item.nickName}}管理员","data":"id={{item.id}}","type":"1","action":"edit","bind":true}'>
                 <i class="iconfont">&#xe653;</i>编辑
             </button>
             <button class="layui-btn layui-btn-mini layui-btn-danger ajax"
-                    data-params='{"url": "/admin/delete","data":"id={{item.id}}","action":"del"}'>
+                    data-params='{"url": "${base}/admin/delete","data":"id={{item.id}}","action":"del"}'>
                 <i class="iconfont">&#xe626;</i>删除
             </button>
         </td>
@@ -148,8 +148,7 @@
     {{# }); }}
 </script>
 
-<script src="js/layui/layui.js"></script>
-<script src="js/common.js"></script>
+<script src="${base}/js/common.js"></script>
 
 <#include "/common/version.html" />
 

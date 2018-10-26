@@ -7,7 +7,7 @@
             <!--头部搜索-->
             <section class="panel panel-padding">
                 <form class="layui-form" data-params='{"dataName":"permission-list","key":"id","action":"list"}'
-                      action="/permission/list">
+                      action="${base}/permission/list">
                     <div class="layui-form">
                         <div class="layui-inline">
                             <div class="layui-input-inline">
@@ -25,7 +25,7 @@
             <section class="panel panel-padding">
                 <div class="group-button">
                     <button class="layui-btn layui-btn-small layui-btn-danger ajax-all"
-                            data-params='{"url": "/permission/delete","dataName":"permission-list","key":"id","action":"del"}'>
+                            data-params='{"url": "${base}/permission/delete","dataName":"permission-list","key":"id","action":"del"}'>
                         <i class="iconfont">&#xe626;</i> 删除
                     </button>
                     <button class="layui-btn layui-btn-small modal"
@@ -106,7 +106,7 @@
 </div>
 </body>
 <script id="list-tpl" type="text/html"
-        data-params='{"url":"/permission/list","dataName":"permission-list","select":"#select-tpl","selectid":"#pid-select"}'>
+        data-params='{"url":"${base}/permission/list","dataName":"permission-list","select":"#select-tpl","selectid":"#pid-select"}'>
     {{# layui.each(d.list, function(index, item){ }}
     <tr>
         <td><input type="checkbox" name="id" value="{{ item.id}}" lay-skin="primary"></td>
@@ -145,13 +145,12 @@
     </option>
     {{# }); }}
 </script>
-<script src="${base}/js/layui/layui.js"></script>
+
 <script src="${base}/js/common.js"></script>
 
 <#include "/common/version.html" />
 <script>
     layui.use('list');
-
 </script>
 
 </html>

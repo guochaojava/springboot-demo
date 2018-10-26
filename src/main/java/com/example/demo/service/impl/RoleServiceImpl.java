@@ -79,4 +79,9 @@ public class RoleServiceImpl implements RoleService {
         map.put("permissions", permissions);
         return dao.updateRolePermission(map);
     }
+
+    @Override
+    public int delete(Integer[] id) {
+        return dao.delete(id);
+    }
 }

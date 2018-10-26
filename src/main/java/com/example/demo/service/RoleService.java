@@ -61,4 +61,12 @@ public interface RoleService {
      * @return
      */
     int updateRolePermission(Long id, List<Integer> permissions);
+
+    /**
+     * 删除
+     *
+     * @param id 待删除id数组
+     * @return
+     */
+    int delete(Integer[] id);
 }

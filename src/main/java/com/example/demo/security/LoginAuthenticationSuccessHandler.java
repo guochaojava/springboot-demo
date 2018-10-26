@@ -38,8 +38,10 @@ public class LoginAuthenticationSuccessHandler extends SavedRequestAwareAuthenti
 
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
-
         logger.info("登录成功");
+
+        String appContext = request.getContextPath();
+
         //更新最后一次登录时间
         String userName = "";
         Object principal = authentication.getPrincipal();
@@ -53,7 +55,7 @@ public class LoginAuthenticationSuccessHandler extends SavedRequestAwareAuthenti
 
         //将 authention 信息打包成json格式返回
         response.setContentType("application/json;charset=UTF-8");
-        response.getWriter().write(JSONUtil.toJsonStr(ResponseEntity.buildOk(authentication).url("/index")));
+        response.getWriter().write(JSONUtil.toJsonStr(ResponseEntity.buildOk(authentication).url(appContext + "/index")));
     }
 
 }
