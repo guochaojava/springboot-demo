@@ -11,7 +11,7 @@
                     <div class="layui-form">
                         <div class="layui-inline">
                             <div class="layui-input-inline">
-                                <input class="layui-input" name="keyword" placeholder="关键字">
+                                <input class="layui-input" name="name" placeholder="关键字">
                             </div>
                         </div>
                         <div class="layui-inline">
@@ -25,11 +25,11 @@
             <section class="panel panel-padding">
                 <div class="group-button">
                     <button class="layui-btn layui-btn-small layui-btn-danger ajax-all"
-                            data-params='{"url": "${base}/permission/delete","dataName":"permission-list","key":"id","action":"del"}'>
+                            data-params='{"url": "${base}/permission/delete","confirm":"true","dataName":"permission-list","key":"id","action":"del"}'>
                         <i class="iconfont">&#xe626;</i> 删除
                     </button>
                     <button class="layui-btn layui-btn-small modal"
-                            data-params='{"content":".add-subcat","area":"600px,430px","title":"添加权限","action":"add","data":"level=0"}'>
+                            data-params='{"content":".add-subcat","area":"600px,430px","title":"添加顶级权限","action":"add","data":"level=0"}'>
                         <i class="iconfont">&#xe649;</i> 添加
                     </button>
                 </div>
@@ -57,19 +57,20 @@
         </div>
     </div>
 </div>
+<!-- 添加修改 -->
 <div class="add-subcat">
     <form id="form1" class="layui-form"
           data-params='{"dataName":"permission","key":"id","bind":true,"action":"add","pid":"pid"}'
           action="${base}/permission/add" method="POST">
-        <div class="layui-form-item">
-            <label class="layui-form-label">父级权限</label>
-            <div class="layui-input-inline">
-                <select name="pid" id="pid-select" jq-verify="required" lay-search jq-error="请选择权限"
-                        lay-filter="pid-select">
-                    <option value="0">顶级权限</option>
-                </select>
-            </div>
-        </div>
+        <!--<div class="layui-form-item">-->
+        <!--<label class="layui-form-label">父级权限</label>-->
+        <!--<div class="layui-input-block">-->
+        <!--<select name="pid" id="pid-select" jq-verify="required" lay-search jq-error="请选择权限"-->
+        <!--lay-filter="pid-select">-->
+        <!--<option value="0">顶级权限</option>-->
+        <!--</select>-->
+        <!--</div>-->
+        <!--</div>-->
 
         <div class="layui-form-item">
             <label class="layui-form-label">权限名称</label>

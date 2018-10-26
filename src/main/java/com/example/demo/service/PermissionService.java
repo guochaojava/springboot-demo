@@ -31,4 +31,6 @@ public interface PermissionService {
     PageInfo<PermissionVO> listByPage(PermissionQuery query);
 
     boolean edit(Permission permission);
+
+    int delete(Integer[] id);
 }

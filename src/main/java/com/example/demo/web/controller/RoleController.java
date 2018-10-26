@@ -39,7 +39,7 @@ public class RoleController {
 
     @GetMapping
     public String role() {
-        return VIEW_PREFIX + "role";
+        return VIEW_PREFIX + "list";
     }
 
     @GetMapping("/list")

@@ -108,4 +108,20 @@
             </if>
         </where>
     </select>
+
+    <delete id="delete">
+        delete from permission
+        where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <delete id="deletePermissionIdInUsedRole">
+        delete from role_permission
+        where permission_id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
 </mapper>

@@ -68,4 +68,11 @@ public class PermissionController {
             return ResponseEntity.buildError("编辑失败");
         }
     }
+
+    @GetMapping(value = "/delete")
+    @ResponseBody
+    public Object delete(Integer[] id) {
+        permissionService.delete(id);
+        return ResponseEntity.buildOk();
+    }
 }
