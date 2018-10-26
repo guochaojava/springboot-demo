@@ -1,5 +1,6 @@
 package com.example.demo.security;
 
+import com.example.demo.enums.AdminStatusEnum;
 import com.example.demo.model.Admin;
 import com.example.demo.model.Role;
 import com.example.demo.service.AdminService;
@@ -43,8 +44,16 @@ public class AdminUserDetailsService implements UserDetailsService {
         //查无此用户
         if (Objects.isNull(adminUser)) {
             log.error("查无此用户: {}", loginName);
-            throw new UsernameNotFoundException(loginName + " not found");
+            throw new UsernameNotFoundException("查无此用户");
         }
+        //账号禁用
+        Boolean accountLocked = false;
+        if (AdminStatusEnum.FORBIDDEN.code().equals(adminUser.getStatus())) {
+            log.error("用户已被禁用: {}", loginName);
+            accountLocked = true;
+        }
+        //账号过期(有响应需求可在此处理 false:代表没有过期 )
+        Boolean accountExpired = false;
 
         //查询用户角色信息
         List<Role> roleList = roleService.selectByAdminId(adminUser.getId());
@@ -52,6 +61,6 @@ public class AdminUserDetailsService implements UserDetailsService {
         for (Role role : roleList) {
             authorities.add(new SimpleGrantedAuthority(role.getCode()));
         }
-        return User.withUsername(loginName).password(adminUser.getPassword()).authorities(authorities).build();
+        return User.withUsername(loginName).accountExpired(accountExpired).accountLocked(accountLocked).password(adminUser.getPassword()).authorities(authorities).build();
     }
 }

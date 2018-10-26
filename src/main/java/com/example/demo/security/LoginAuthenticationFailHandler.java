@@ -26,8 +26,21 @@ public class LoginAuthenticationFailHandler extends SimpleUrlAuthenticationFailu
 
         log.error("登录失败");
 
+        String msg = "登录失败";
+        //处理登录失败信息
+        if ("User account is locked".equals(e.getMessage())) {
+            msg = "登录账号已被禁用";
+        }
+        if("Bad credentials".equals(e.getMessage())){
+            msg = "登录账号或密码错误";
+        }
+
+        if("User account has expired".equals(e.getMessage())){
+            msg = "登录账号已过期";
+        }
+
         //将 登录失败 信息打包成json格式返回
         response.setContentType("application/json;charset=UTF-8");
-        response.getWriter().write(JSONUtil.toJsonStr(ResponseEntity.buildError("账号或密码错误")));
+        response.getWriter().write(JSONUtil.toJsonStr(ResponseEntity.buildError(msg)));
     }
 }

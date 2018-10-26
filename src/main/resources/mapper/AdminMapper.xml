@@ -65,7 +65,7 @@
         select
         <include refid="Base_Column_List"/>
         from admin
-        where login_name = #{loginName,jdbcType=VARCHAR} and status = 1
+        where login_name = #{loginName,jdbcType=VARCHAR}
     </select>
 
     <select id="list" resultMap="VoResultMap">
@@ -82,11 +82,15 @@
         LEFT JOIN admin_role ar ON a.id = ar.admin_id
         LEFT JOIN role r ON r.id = ar.role_id
         <where>
+            a.login_name != 'admin'
             <if test="loginName != null">
-                a.login_name like CONCAT('%',#{loginName},'%')
+                and a.login_name like CONCAT('%',#{loginName},'%')
             </if>
             <if test="nickName != null">
-                a.nick_name like CONCAT('%',#{nickName},'%')
+                and a.nick_name like CONCAT('%',#{nickName},'%')
+            </if>
+            <if test="roleId != null and roleId !=0 ">
+                and r.id = #{roleId}
             </if>
         </where>
     </select>

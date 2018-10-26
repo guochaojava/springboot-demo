@@ -43,7 +43,7 @@ public class Admin {
      * 对应数据库 admin.status
      * 状态  默认1:正常  0:封禁
      */
-    private Boolean status;
+    private Integer status;
 
     public Long getId() {
         return id;
@@ -93,11 +93,11 @@ public class Admin {
         this.lastLoginTime = lastLoginTime;
     }
 
-    public Boolean getStatus() {
+    public Integer getStatus() {
         return status;
     }
 
-    public void setStatus(Boolean status) {
+    public void setStatus(Integer status) {
         this.status = status;
     }
 

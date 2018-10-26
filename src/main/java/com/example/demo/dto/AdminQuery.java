@@ -12,4 +12,5 @@ import lombok.Setter;
 public class AdminQuery extends BaseQuery {
     private String loginName;
     private String nickName;
+    private Integer roleId;
 }
