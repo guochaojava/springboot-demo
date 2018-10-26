@@ -3,17 +3,21 @@ package com.example.demo.web.controller;
 import com.example.demo.dto.AdminQuery;
 import com.example.demo.entity.ResponseEntity;
 import com.example.demo.model.Admin;
+import com.example.demo.model.Role;
 import com.example.demo.service.AdminService;
+import com.example.demo.service.RoleService;
 import com.example.demo.vo.AdminVO;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -30,10 +34,14 @@ public class AdminController {
 
     @Autowired
     private AdminService adminService;
+    @Autowired
+    private RoleService roleService;
 
     @GetMapping()
-    public String admin() {
-        return VIEW_PREFIX + "admin";
+    public String admin(Model model) {
+        List<Role> list = roleService.listNoPages();
+        model.addAttribute("roleList", list);
+        return VIEW_PREFIX + "list";
     }
 
     @GetMapping("/list")

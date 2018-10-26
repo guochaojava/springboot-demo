@@ -21,9 +21,9 @@
                         <div class="layui-inline">
                             <select name="roleId">
                                 <option value="0">请选择角色</option>
-                                <option value="1">时代新人</option>
-                                <option value="2">今日头条</option>
-                                <option value="3">科技朝文</option>
+                                <#list roleList as p>
+                                    <option value="${p.id}">${p.name}</option>
+                                </#list>
                             </select>
                         </div>
                         <div class="layui-inline">
@@ -195,7 +195,7 @@
             url: "${base}/role/listNoPages",
             dataType: "json",
             success: function (data) {
-                $.each(data.data, function (i, item) {
+                $.each(data.data.list, function (i, item) {
                     $("#role").append("<option value='" + item.id + "'>" + item.name + "</option>")
                 });
             }
