@@ -71,7 +71,7 @@ public class PermissionController {
 
     @GetMapping(value = "/delete")
     @ResponseBody
-    public Object delete(Integer[] id) {
+    public Object delete(Long[] id) {
         permissionService.delete(id);
         return ResponseEntity.buildOk();
     }

@@ -51,6 +51,32 @@ public class AdminController {
         return ResponseEntity.buildOk(list.getList(), "查询成功", list.getPages(), list.getTotal());
     }
 
+    @GetMapping("/add")
+    public String toAdd(Model model) {
+        List<Role> list = roleService.listNoPages();
+        model.addAttribute("roleList", list);
+        return VIEW_PREFIX + "add";
+    }
+
+
+    @PostMapping("/add")
+    @ResponseBody
+    public Object add(Admin admin) {
+        if (adminService.add(admin)) {
+            Map<String, Object> map = new HashMap<>(1);
+            map.put("id", admin.getId().toString());
+            return ResponseEntity.buildOk(map).reload();
+        }
+        return ResponseEntity.buildError("添加失败");
+    }
+
+    @GetMapping("edit")
+    public String toEdit(Model model) {
+        List<Role> list = roleService.listNoPages();
+        model.addAttribute("roleList", list);
+        return VIEW_PREFIX + "edit";
+    }
+
     @PostMapping("/edit")
     @ResponseBody
     public Object edit(Admin admin) {
@@ -70,17 +96,6 @@ public class AdminController {
         return ResponseEntity.buildOk("修改成功");
     }
 
-    @GetMapping("/delete")
-    @ResponseBody
-    public Object delete(Long[] id) {
-        int result = adminService.deleteById(id);
-        if (result > 0) {
-            return ResponseEntity.buildOk().reload();
-        } else {
-            return ResponseEntity.buildError("删除失败");
-        }
-    }
-
     @GetMapping("/status")
     @ResponseBody
     public Object status(Long[] id) {
@@ -90,5 +105,12 @@ public class AdminController {
         } else {
             return ResponseEntity.buildError("更新失败");
         }
+    }
+
+    @GetMapping(value = "/delete")
+    @ResponseBody
+    public Object delete(Long[] id) {
+        adminService.delete(id);
+        return ResponseEntity.buildOk();
     }
 }

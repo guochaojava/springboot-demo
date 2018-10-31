@@ -37,7 +37,7 @@
             <section class="panel panel-padding">
                 <div class="group-button">
                     <button class="layui-btn layui-btn-small layui-btn-danger ajax-all"
-                            data-params='{"url": "${base}/admin/delete","dataName":"admin","key":"id","action":"del"}'>
+                            data-params='{"url": "${base}/admin/delete","confirm":"true","dataName":"admin","key":"id","action":"del"}'>
                         <i class="iconfont">&#xe626;</i> 删除
                     </button>
 
@@ -46,7 +46,7 @@
                         <i class="layui-icon">&#x1005;</i> 启用
                     </button>
                     <button class="layui-btn layui-btn-small modal"
-                            data-params='{"content":".add-subcat","area":"500px,480px", "title":"添加管理员","type":"1","dataName":"admin","key":"id","action":"add"}'>
+                            data-params='{"content":"${base}/admin/add","area":"600px,520px", "title":"添加管理员","type":"2","dataName":"admin","key":"id","action":"add"}'>
                         <i class="iconfont">&#xe649;</i> 添加
                     </button>
                 </div>
@@ -76,59 +76,7 @@
 </div>
 
 <div class="add-subcat">
-    <form id="form1" class="layui-form" data-params='{"dataName":"admin","key":"id","action":"add"}'
-          action="${base}/admin/edit" method="POST">
-        <div class="layui-form-item">
-            <label class="layui-form-label">登录账号</label>
-            <div class="layui-input-inline">
-                <input type="text" name="loginName" required jq-verify="required|loginName" jq-error="请输入帐号" placeholder="请输入帐号"
-                       autocomplete="off" class="layui-input ">
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label">密码</label>
-            <div class="layui-input-inline">
-                <input type="password" name="password" required jq-verify="required|pass" jq-error="请输入密码|请检查密码格式"
-                       placeholder="密码" autocomplete="off" class="layui-input ">
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label">密码确认</label>
-            <div class="layui-input-inline">
-                <input type="password" name="pwd2" required jq-verify="required|pass2" jq-error="请确认密码|两次密码不一致"
-                       placeholder="密码确认" autocomplete="off" class="layui-input ">
-            </div>
-        </div>
 
-        <div class="layui-form-item">
-            <label class="layui-form-label">所属角色</label>
-            <div class="layui-input-inline">
-                <select id="role" name="roleId" required hidden-required="true" jq-verify="required" jq-error="请选择角色">
-                    <option value="">请选择角色</option>
-                </select>
-            </div>
-        </div>
-
-        <div class="layui-form-item">
-            <label class="layui-form-label">昵称</label>
-            <div class="layui-input-inline">
-                <input type="text" name="nickName" placeholder="昵称" autocomplete="off" class="layui-input ">
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label">状态</label>
-            <div class="layui-input-inline">
-                <input type="radio" name="status" title="启用" value="1" checked/>
-                <input type="radio" name="status" title="禁用" value="0"/>
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <div class="layui-input-block">
-                <button class="layui-btn" jq-submit jq-filter="submit">立即提交</button>
-                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
-            </div>
-        </div>
-    </form>
 </div>
 </body>
 
@@ -148,11 +96,11 @@
                    data-params='{"url":"${base}/admin/status","data":"id={{ item.id}}"}'></td>
         <td>
             <button class="layui-btn layui-btn-mini modal"
-                    data-params='{"content": ".add-subcat","area":"500px,480px","title":"编辑{{ item.nickName}}管理员","data":"id={{item.id}}","type":"1","action":"edit","bind":true}'>
+                    data-params='{"content": "${base}/admin/edit","area":"600px,520px","title":"编辑{{ item.nickName}}管理员","data":"id={{item.id}}","type":"2","action":"edit","bind":true}'>
                 <i class="iconfont">&#xe653;</i>编辑
             </button>
             <button class="layui-btn layui-btn-mini layui-btn-danger ajax"
-                    data-params='{"url": "${base}/admin/delete","data":"id={{item.id}}","action":"del"}'>
+                    data-params='{"url": "${base}/admin/delete","confirm":"true","data":"id={{item.id}}","action":"del"}'>
                 <i class="iconfont">&#xe626;</i>删除
             </button>
         </td>

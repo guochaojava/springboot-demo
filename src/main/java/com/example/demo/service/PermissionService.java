@@ -32,5 +32,5 @@ public interface PermissionService {
 
     boolean edit(Permission permission);
 
-    int delete(Integer[] id);
+    int delete(Long[] id);
 }

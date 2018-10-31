@@ -31,4 +31,6 @@ public interface AdminMapper {
     void updateRole(Admin admin);
 
     int info(Admin admin);
+
+    int delete(Long[] id);
 }

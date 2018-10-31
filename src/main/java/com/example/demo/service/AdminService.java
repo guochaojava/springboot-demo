@@ -66,4 +66,20 @@ public interface AdminService {
      * @return 修改结果
      */
     int info(Admin admin);
+
+    /**
+     * 添加管理员
+     *
+     * @param admin 数据
+     * @return 添加结果
+     */
+    boolean add(Admin admin);
+
+    /**
+     * 删除管理员
+     *
+     * @param id id数组
+     * @return 删除条数
+     */
+    int delete(Long[] id);
 }

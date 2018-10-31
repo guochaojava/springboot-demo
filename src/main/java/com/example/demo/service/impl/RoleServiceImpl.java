@@ -81,7 +81,7 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
-    public int delete(Integer[] id) {
+    public int delete(Long[] id) {
         return dao.delete(id);
     }
 }

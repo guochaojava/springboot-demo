@@ -1,0 +1,99 @@
+<#include "/common/header.html" />
+
+<body>
+<div class="container-fluid larry-wrapper">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <section class="panel panel-padding">
+                <form id="form1" class="layui-form" data-params='{"dataName":"admin","key":"id","action":"add"}'
+                      action="${base}/admin/add" method="POST">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">登录账号</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="loginName" required jq-verify="required|loginName" jq-error="请输入帐号" placeholder="请输入帐号"
+                                   autocomplete="off" class="layui-input ">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">密码</label>
+                        <div class="layui-input-inline">
+                            <input type="password" name="password" required jq-verify="required|pass" jq-error="请输入密码|请检查密码格式"
+                                   placeholder="密码" autocomplete="off" class="layui-input ">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">密码确认</label>
+                        <div class="layui-input-inline">
+                            <input type="password" name="pwd2" required jq-verify="required|pass2" jq-error="请确认密码|两次密码不一致"
+                                   placeholder="密码确认" autocomplete="off" class="layui-input ">
+                        </div>
+                    </div>
+
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">所属角色</label>
+                        <div class="layui-input-inline">
+                            <select id="role" name="roleId" required hidden-required="true" jq-verify="required" jq-error="请选择角色">
+                                <option value="">请选择角色</option>
+                                <#list roleList as p>
+                                    <option value="${p.id}">${p.name}</option>
+                                </#list>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">昵称</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="nickName" placeholder="昵称" autocomplete="off" class="layui-input ">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">状态</label>
+                        <div class="layui-input-inline">
+                            <input type="radio" name="status" title="启用" value="1" checked/>
+                            <input type="radio" name="status" title="禁用" value="0"/>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <div class="layui-input-block">
+                            <button class="layui-btn" jq-submit jq-filter="submit">立即提交</button>
+                            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                        </div>
+                    </div>
+                </form>
+            </section>
+        </div>
+    </div>
+</div>
+</body>
+
+<#include "/common/version.html" />
+
+<script>
+    layui.use('myform',function () {
+        var $ = layui.jquery,
+            form = layui.jqform;
+
+        form.verify({
+            loginName: function (value) {
+                if (!new RegExp("^[a-zA-Z0-9_\u4e00-\u9fa5\\s·]+$").test(value)) {
+                    return '不能有特殊字符';
+                }
+                if (/^\d+\d+\d$/.test(value)) {
+                    return '不能全为数字';
+                }
+            },
+            pass2: function (value) {
+                var pwd = $("input[name='password']").val();
+                if (value != pwd) {
+                    return '两次密码不一致';
+                }
+            },
+            pass: [
+                /^[\S]{6,12}$/, '密码必须6到12位，且不能出现空格'
+            ]
+        });
+    });
+</script>
+
+</html>

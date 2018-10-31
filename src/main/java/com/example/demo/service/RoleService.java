@@ -68,5 +68,5 @@ public interface RoleService {
      * @param id 待删除id数组
      * @return
      */
-    int delete(Integer[] id);
+    int delete(Long[] id);
 }

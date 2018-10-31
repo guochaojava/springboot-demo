@@ -50,7 +50,7 @@ public class PermissionServiceImpl implements PermissionService {
     }
 
     @Override
-    public int delete(Integer[] id) {
+    public int delete(Long[] id) {
         //删除权限
         dao.delete(id);
         //删除已选权限的角色

@@ -58,25 +58,12 @@ public class AdminServiceImpl implements AdminService {
     public boolean edit(Admin admin) {
         //更新操作
         if (Objects.nonNull(admin.getId())) {
-            if (Objects.nonNull(admin.getPassword())) {
+            if (Objects.nonNull(admin.getPassword()) && admin.getPassword() != "") {
                 String encodePassword = passwordEncoder.encode(admin.getPassword());
                 admin.setPassword(encodePassword);
             }
             dao.update(admin);
             dao.updateRole(admin);
-        }
-        //添加操作
-        else {
-            //spring security 版本在5.0后就要加个PasswordEncoder了
-            String encodePassword = passwordEncoder.encode(admin.getPassword());
-            admin.setPassword(encodePassword);
-
-            Long timestamp = System.currentTimeMillis();
-            admin.setCreateTime(timestamp);
-            admin.setLastLoginTime(timestamp);
-            if (dao.add(admin)) {
-                dao.addRole(admin);
-            }
         }
         return true;
     }
@@ -89,5 +76,25 @@ public class AdminServiceImpl implements AdminService {
             admin.setPassword(encodePassword);
         }
         return dao.info(admin);
+    }
+
+    @Override
+    public boolean add(Admin admin) {
+        //spring security 版本在5.0后就要加个PasswordEncoder了
+        String encodePassword = passwordEncoder.encode(admin.getPassword());
+        admin.setPassword(encodePassword);
+
+        Long timestamp = System.currentTimeMillis();
+        admin.setCreateTime(timestamp);
+        admin.setLastLoginTime(timestamp);
+        if (dao.add(admin)) {
+            dao.addRole(admin);
+        }
+        return true;
+    }
+
+    @Override
+    public int delete(Long[] id) {
+        return dao.delete(id);
     }
 }

@@ -21,7 +21,7 @@ public interface PermissionMapper {
 
     boolean update(Permission permission);
 
-    int delete(Integer[] id);
+    int delete(Long[] id);
 
-    int deletePermissionIdInUsedRole(Integer[] id);
+    int deletePermissionIdInUsedRole(Long[] id);
 }

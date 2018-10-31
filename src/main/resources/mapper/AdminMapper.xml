@@ -36,7 +36,7 @@
             <if test="loginName != null">
                 login_name = #{loginName,jdbcType=VARCHAR},
             </if>
-            <if test="password != null">
+            <if test="password != null and password != ''">
                 password = #{password,jdbcType=VARCHAR},
             </if>
             <if test="nickName != null">
@@ -185,4 +185,12 @@
         </set>
         where id = #{id,jdbcType=BIGINT}
     </update>
+
+    <delete id="delete">
+        delete from admin
+        where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
 </mapper>

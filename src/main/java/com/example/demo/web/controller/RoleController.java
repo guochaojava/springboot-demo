@@ -85,7 +85,7 @@ public class RoleController {
 
     @GetMapping(value = "/delete")
     @ResponseBody
-    public Object delete(Integer[] id) {
+    public Object delete(Long[] id) {
         roleService.delete(id);
         return ResponseEntity.buildOk();
     }
