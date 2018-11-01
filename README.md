@@ -2,7 +2,7 @@
 [![](https://img.shields.io/badge/Author-guochao-ff69b4.svg)](https://github.com/guochaojava/springboot-demo)
 [![](https://img.shields.io/badge/version-1.0-brightgreen.svg)](https://github.com/guochaojava/springboot-demo)
 
-> 如果感觉对你有帮助欢迎点击Star支持一下
+> 如果感觉对你有帮助欢迎点击Star支持一下，不定期更新完善
 
 ### 基于springboot2.x的后台管理模版
 - [x] log4j2日志
