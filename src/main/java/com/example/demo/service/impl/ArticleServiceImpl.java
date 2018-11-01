@@ -1,5 +1,6 @@
 package com.example.demo.service.impl;
 
+import com.example.demo.api.param.ArticleParam;
 import com.example.demo.dao.ArticleMapper;
 import com.example.demo.dto.ArticleQuery;
 import com.example.demo.model.Article;
@@ -34,5 +35,18 @@ public class ArticleServiceImpl implements ArticleService {
     public int add(Article article) {
         article.setCreateTime(System.currentTimeMillis());
         return dao.insertSelective(article);
+    }
+
+    @Override
+    public PageInfo<Article> apiList(ArticleParam param) {
+        PageHelper.startPage(param.getPageNum(), param.getPageSize());
+        List<Article> list = dao.apiList(param);
+        PageInfo<Article> pageInfo = new PageInfo<>(list);
+        return pageInfo;
+    }
+
+    @Override
+    public Article get(Long id) {
+        return dao.selectByPrimaryKey(id);
     }
 }

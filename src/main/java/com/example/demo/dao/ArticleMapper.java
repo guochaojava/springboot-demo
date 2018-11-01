@@ -1,5 +1,6 @@
 package com.example.demo.dao;
 
+import com.example.demo.api.param.ArticleParam;
 import com.example.demo.dto.ArticleQuery;
 import com.example.demo.model.Article;
 import com.example.demo.vo.ArticleVO;
@@ -24,4 +25,6 @@ public interface ArticleMapper {
     int updateByPrimaryKey(Article record);
 
     List<ArticleVO> list(ArticleQuery query);
+
+    List<Article> apiList(ArticleParam param);
 }

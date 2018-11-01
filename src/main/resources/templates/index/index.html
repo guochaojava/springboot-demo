@@ -47,13 +47,19 @@
                         <span>系统设置</span>
                     </a>
                 </li>
-            </@security.authorize>
-            <li class="layui-nav-item layui-this">
-                <a href="javascript:;" data-title="文章管理">
-                    <i class="iconfont hide-icon">&#xe689;</i>
-                    <span>文章管理</span>
-                </a>
-            </li>
+                </@security.authorize>
+                <li class="layui-nav-item layui-this">
+                    <a href="javascript:;" data-title="文章管理">
+                        <i class="iconfont hide-icon">&#xe689;</i>
+                        <span>文章管理</span>
+                    </a>
+                </li>
+                <li class="layui-nav-item layui-this">
+                    <a href="javascript:;" data-title="接口文档">
+                        <i class="iconfont hide-icon">&#xe689;</i>
+                        <span>接口文档</span>
+                    </a>
+                </li>
             </ul>
         </div>
         <!-- 头部右侧导航 -->
@@ -131,6 +137,16 @@
                         <a href="javascript:;" data-url="${base}/article" data-title="文章列表">
                             <i class="iconfont" data-icon="&#xe608;">&#xe608;</i>
                             <span>文章列表</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="sub-menu">
+                <ul class="layui-nav layui-nav-tree">
+                    <li class="layui-nav-item">
+                        <a href="javascript:;" data-url="${base}/swagger-ui.html" data-title="接口文档">
+                            <i class="iconfont" data-icon="&#xe608;">&#xe608;</i>
+                            <span>接口文档</span>
                         </a>
                     </li>
                 </ul>
