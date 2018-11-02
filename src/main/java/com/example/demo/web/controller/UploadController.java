@@ -33,7 +33,7 @@ public class UploadController {
     @Autowired
     private PropertiesConfig propertiesConfig;
 
-    @RequestMapping("/upload/img")
+    @RequestMapping("/upload")
     @ResponseBody
     public Object uploadImg(@RequestParam(value = "file", required = false) MultipartFile file, HttpServletRequest request) throws Exception {
         String originalFilename = file.getOriginalFilename();
@@ -41,7 +41,7 @@ public class UploadController {
         String newName = generateFileName(originalFilename);
 
         String path = saveFiles(file, newName);
-        return ResponseEntity.buildOk(getBaseUrlNoContext(request) + path);
+        return ResponseEntity.buildOk(getBaseUrl(request) + path);
     }
 
 
@@ -64,7 +64,7 @@ public class UploadController {
             String fileName = image.getOriginalFilename();
             String newFileName = generateFileName(fileName);
             String path = saveFiles(image, newFileName);
-            imgurls.add(getBaseUrlNoContext(request) + path);
+            imgurls.add(getBaseUrl(request) + path);
         }
         map.put("errno", "0");
         map.put("data", imgurls);
@@ -92,12 +92,14 @@ public class UploadController {
         String basePath = "";
         // 相对路径 用于返回路径并持久化
         String path = getUploadPath();
-        // 获取当前操作系统 用于判断是windows还是linux
+        // 获取保存地址
         basePath = propertiesConfig.getUpload().getPath();
 
         File targetFile = new File(basePath + path, fileName);
-        if (!targetFile.exists()) {
-            targetFile.createNewFile();
+
+        //父级文件夹是否存在，不存在新建
+        if (!targetFile.getParentFile().exists()) {
+            targetFile.getParentFile().mkdirs();
         }
         // 保存
         file.transferTo(targetFile);
@@ -112,7 +114,6 @@ public class UploadController {
                 ImageUtil.scale(targetFile, targetFile, (float) 1);
             }
         }
-
         return "/upload" + path + "/" + fileName;
     }
 
@@ -129,6 +130,17 @@ public class UploadController {
         return path;
     }
 
+    public String getBaseUrl(HttpServletRequest request) {
+        String appContext = request.getContextPath();
+        StringBuilder basePath = new StringBuilder();
+        basePath.append(request.getScheme()).append("://");
+        basePath.append(request.getServerName());
+        if (request.getServerPort() != 80 && request.getServerPort() != 443) {
+            basePath.append(":").append(request.getServerPort());
+        }
+        basePath.append(appContext);
+        return basePath.toString();
+    }
 
     /**
      * 获取基本路径不包含项目名称 例如：http://localhost:8080/ @client @client
