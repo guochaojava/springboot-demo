@@ -26,25 +26,25 @@ layui.define(['jquery', "jqtable", 'jqbind', 'jqajax', 'jqdate', 'upload', 'jqfo
     })
 
     //如果是文章列表，则提前取出分类数据缓存到本地
-    if (list.options.dataName == "article") {
-        var locationData = layui.data("articleCat"),
-            record = locationData.list ? locationData.list : "";
-        if (!record) {
-            var jqajax = layui.jqajax,
-                ajax = new jqajax();
-            ajax.options.url = "./data/cat.json";
-            ajax.ajax(ajax.options);
-            ajax.complete = function(ret, options) {
-                if (ret.status = 200) {
-                    record = ret.data.list;
-                    layui.data("articleCat", {
-                        key: "list",
-                        value: record
-                    });
-                }
-            }
-        }
-    }
+    // if (list.options.dataName == "article") {
+    //     var locationData = layui.data("articleCat"),
+    //         record = locationData.list ? locationData.list : "";
+    //     if (!record) {
+    //         var jqajax = layui.jqajax,
+    //             ajax = new jqajax();
+    //         ajax.options.url = "./data/cat.json";
+    //         ajax.ajax(ajax.options);
+    //         ajax.complete = function(ret, options) {
+    //             if (ret.status = 200) {
+    //                 record = ret.data.list;
+    //                 layui.data("articleCat", {
+    //                     key: "list",
+    //                     value: record
+    //                 });
+    //             }
+    //         }
+    //     }
+    // }
 
     //自定义表单填充
     // jqbind.setVal = function(options) {

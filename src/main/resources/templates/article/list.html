@@ -6,9 +6,8 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <!--头部搜索-->
             <section class="panel panel-padding">
-                <form class="layui-form" data-params='{"dataName":"products","action":"list"}'
-                      action="${base}/article/list"
-                      method="get">
+                <form class="layui-form" data-params='{"dataName":"article","action":"list"}'
+                      action="${base}/article/list" method="get">
                     <div class="layui-form">
                         <div class="layui-inline">
                             <select name="city" lay-verify="required">
@@ -48,15 +47,15 @@
             <section class="panel panel-padding">
                 <div class="group-button">
                     <button class="layui-btn layui-btn-small layui-btn-danger ajax-all"
-                            data-params='{"url": "${base}/article/delete","action":"del","dataName":"products","key":"id"}'>
+                            data-params='{"url": "${base}/article/delete","confirm":"true","action":"del","dataName":"article","key":"id"}'>
                         <i class="iconfont">&#xe626;</i> 删除
                     </button>
                     <button class="layui-btn layui-btn-small layui-btn-normal ajax-all"
-                            data-params='{"url": "${base}/article/update","data":"status=1","dataName":"products","key":"id"}'>
+                            data-params='{"url": "${base}/article/edit","data":"status=1","dataName":"article","key":"id"}'>
                         <i class="iconfont">&#xe603;</i> 发布
                     </button>
                     <button class="layui-btn layui-btn-small layui-btn-normal ajax-all"
-                            data-params='{"url": "${base}/article/update","data":"status=2","dataName":"products","key":"id"}'>
+                            data-params='{"url": "${base}/article/edit","data":"status=2","dataName":"article","key":"id"}'>
                         <i class="layui-icon">&#x1005;</i> 驳回
                     </button>
                     <button class="layui-btn layui-btn-small modal"
@@ -65,7 +64,7 @@
                     </button>
                 </div>
                 <div class="layui-form">
-                    <table id="example" class="layui-table jq-even" data-params='{"dataName":"products","key":"id"}'>
+                    <table id="example" class="layui-table jq-even" data-params='{"dataName":"article","key":"id"}'>
                         <thead>
                         <tr>
                             <th width="30"><input type="checkbox" id="checkall" data-name="id" lay-filter="check"
@@ -91,7 +90,7 @@
 </body>
 
 <script id="list-tpl" type="text/html"
-        data-params='{"url":"${base}/article/list","dataName":"products","pageid":"#page"}'>
+        data-params='{"url":"${base}/article/list","dataName":"article","pageid":"#page"}'>
 
     {{# layui.each(d.list, function(index, item){ }}
     <tr>
@@ -106,19 +105,19 @@
         <td>
             <div class="img"><img src="{{ item.cover }}" alt="{{item.title}}" class="img-thumbnail"></div>
         </td>
-        <td><input type="text" class="layui-input ajax-blur" name="order" value="{{ item.id}}"
+        <td><input type="text" class="layui-input ajax-blur" name="order" value="{{ item.sort}}"
                    data-params='{"url":"${base}/article/update","data":"id={{ item.id}}"}'></td>
-        <td><input type="checkbox" name="status" lay-skin="switch" value="1" lay-text="发布|待审" {{#if (item.switch){
+        <td><input type="checkbox" name="status" lay-skin="switch" value="1" lay-text="发布|待审" {{#if (item.status){
                    }}checked="checked" {{# } }} lay-filter="ajax"
-                   data-params='{"url":"./data/success.json","data":"id={{ item.id}}&name=paco"}'></td>
+                   data-params='{"url":"${base}/article/status","data":"id={{ item.id}}"}'></td>
         <td>
             <div class="layui-btn-group">
                 <button class="layui-btn layui-btn-mini modal"
-                        data-params='{"content": "${base}/article/update", "title": "{{item.title}}","type":"2","data":"id={{ item.id }}","select":"#select-tpl","selectid":"#pid-select"}'>
+                        data-params='{"content": "${base}/article/edit", "title": "{{item.title}}","type":"2","data":"id={{ item.id }}","action":"edit","bind":true}'>
                     <i class="iconfont">&#xe653;</i>编辑
                 </button>
                 <button class="layui-btn layui-btn-mini layui-btn-danger ajax"
-                        data-params='{"url": "${base}/article/delete","data":"id={{ item.id }}","action":"del"}'>
+                        data-params='{"url": "${base}/article/delete","confirm":"true","data":"id={{ item.id }}","action":"del"}'>
                     <i class="iconfont">&#xe626;</i>删除
                 </button>
             </div>

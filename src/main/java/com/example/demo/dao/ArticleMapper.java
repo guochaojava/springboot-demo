@@ -27,4 +27,10 @@ public interface ArticleMapper {
     List<ArticleVO> list(ArticleQuery query);
 
     List<Article> apiList(ArticleParam param);
+
+    int delete(Long[] id);
+
+    int updateStatusById(Long[] id);
+
+    String selectContentById(Long id);
 }

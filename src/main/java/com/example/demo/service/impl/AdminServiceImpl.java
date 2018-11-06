@@ -46,6 +46,8 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public int updateStatusById(Long[] id) {
+        //当前写法只适合2个状态互换 --》具体查看sql写法
+        //可自行定义处理
         return dao.updateStatusById(id);
     }
 

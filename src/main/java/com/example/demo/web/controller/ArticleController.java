@@ -8,6 +8,7 @@ import com.example.demo.vo.ArticleVO;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -53,6 +54,43 @@ public class ArticleController {
         articleService.add(article);
         Map<String, Object> map = new HashMap<>(1);
         map.put("id", article.getId().toString());
-        return ResponseEntity.buildOk(map).url("/article");
+        return ResponseEntity.buildOk(map).reload();
+    }
+
+    @GetMapping("/edit")
+    public String toEdit(Long id,Model model) {
+        //获取文章内容 ，放入前端wangEdit富文本中
+        //文章内容，数据库为text类型，建议独立出来，数据量多了以后便于搜索不印象索引等（我这就不处理了）
+        //我这里随意处理下
+        String content = articleService.selectContentById(id);
+        model.addAttribute("content",content);
+        return VIEW_PREFIX + "edit";
+    }
+
+    @PostMapping("/edit")
+    @ResponseBody
+    public Object edit(Article article) {
+        articleService.edit(article);
+        Map<String, Object> map = new HashMap<>(1);
+        map.put("id", article.getId().toString());
+        return ResponseEntity.buildOk(map).reload();
+    }
+
+    @GetMapping("/status")
+    @ResponseBody
+    public Object status(Long[] id) {
+        int result = articleService.updateStatusById(id);
+        if (result > 0) {
+            return ResponseEntity.buildOk().reload();
+        } else {
+            return ResponseEntity.buildError("更新失败");
+        }
+    }
+
+    @GetMapping(value = "/delete")
+    @ResponseBody
+    public Object delete(Long[] id) {
+        articleService.delete(id);
+        return ResponseEntity.buildOk();
     }
 }

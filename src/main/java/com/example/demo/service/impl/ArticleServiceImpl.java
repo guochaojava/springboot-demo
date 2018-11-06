@@ -49,4 +49,26 @@ public class ArticleServiceImpl implements ArticleService {
     public Article get(Long id) {
         return dao.selectByPrimaryKey(id);
     }
+
+    @Override
+    public int delete(Long[] id) {
+        return dao.delete(id);
+    }
+
+    @Override
+    public int updateStatusById(Long[] id) {
+        //当前写法只适合2个状态互换 --》具体查看sql写法
+        //可自行定义处理
+        return dao.updateStatusById(id);
+    }
+
+    @Override
+    public int edit(Article article) {
+        return dao.updateByPrimaryKeySelective(article);
+    }
+
+    @Override
+    public String selectContentById(Long id) {
+        return dao.selectContentById(id);
+    }
 }

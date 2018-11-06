@@ -189,4 +189,31 @@
             </if>
         </where>
     </select>
+
+    <delete id="delete">
+        delete from article
+        where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <update id="updateStatusById">
+        UPDATE article
+        SET `status` = CASE `status`
+        WHEN 1 THEN
+        0
+        WHEN 0 THEN
+        1
+        END
+        WHERE
+        id IN
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </update>
+
+    <select id="selectContentById" resultType="string">
+        select content from article where id = #{id}
+    </select>
 </mapper>

@@ -5,8 +5,10 @@
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <section class="panel panel-padding">
-                <form id="form1" class="layui-form" data-params='{"dataName":"article","key":"id","action":"add"}'
-                      action="${base}/article/add" method="post">
+                <form id="form1" class="layui-form"
+                      data-params='{"dataName":"article","key":"id","action":"edit","bind":true}'
+                      action="${base}/article/edit" method="post">
+                    <input type="hidden" name="id">
                     <div class="layui-form-item">
                         <label class="layui-form-label">标题</label>
                         <div class="layui-input-block">
@@ -58,7 +60,7 @@
                     <div class="layui-form-item">
                         <label class="layui-form-label">内容</label>
                         <div class="layui-input-block">
-                            <div id="div1"></div>
+                            <div id="div1">${content}</div>
                             <textarea id="text1" style="display: none" name="content"></textarea>
                         </div>
                     </div>
@@ -86,7 +88,7 @@
 
     layui.use('product', function () {
         var $ = layui.jquery,
-        form = layui.jqform;
+            form = layui.jqform;
 
         form.verify({
             title: function (value) {

@@ -38,8 +38,8 @@ public class ArticleApi {
     @ApiOperation(value = "获取文章列表", notes = "restful风格分页接口")
     @GetMapping("/article/{pageNum}/{pageSize}")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "pageNum", value = "请求页码", dataType = "int", required = true),
-            @ApiImplicitParam(name = "pageSize", value = "每页数量", dataType = "int", required = true)
+            @ApiImplicitParam(name = "pageNum", value = "请求页码", dataType = "int",example = "1", required = true),
+            @ApiImplicitParam(name = "pageSize", value = "每页数量", dataType = "int",example = "10",required = true)
     })
     public Object resultFullList(@PathVariable Integer pageNum, @PathVariable Integer pageSize) {
         ArticleParam param = new ArticleParam();
@@ -51,7 +51,7 @@ public class ArticleApi {
 
     @ApiOperation(value = "获取文章", notes = "restful风格")
     @GetMapping("/article/{id}")
-    @ApiImplicitParam(name = "id", required = true, value = "文章id", dataType = "int")
+    @ApiImplicitParam(name = "id", required = true, value = "文章id",example = "1",dataType = "int")
     public Object get(@PathVariable Long id) {
         Article article = articleService.get(id);
         return ApiResponseEntity.buildOk(article);

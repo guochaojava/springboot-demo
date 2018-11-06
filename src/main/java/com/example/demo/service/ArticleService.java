@@ -16,4 +16,12 @@ public interface ArticleService {
     PageInfo<Article> apiList(ArticleParam param);
 
     Article get(Long id);
+
+    int delete(Long[] id);
+
+    int updateStatusById(Long[] id);
+
+    int edit(Article article);
+
+    String selectContentById(Long id);
 }
