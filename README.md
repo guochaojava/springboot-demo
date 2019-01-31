@@ -26,6 +26,3 @@
 > *  修改jqmenu.js  菜单渲染方法
 
 
-### 疑问咨询
-- 作者邮箱：**guochaojava@gmail.com**
-
